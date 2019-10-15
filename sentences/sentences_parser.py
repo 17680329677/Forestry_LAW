@@ -53,11 +53,11 @@ def sentences_parser(file_path):
         while line:
             if line.startswith('【法规全文】'):
                 line = line.replace('【法规全文】', '')
-                print(str(num) + ': ' + line)
+                print(str(num) + ':' + line.strip())
                 num = num + 1
                 line = f.readline()
                 while line:
-                    print(str(num) + ': ' + line)
+                    print(str(num) + ':' + line.strip().split('　')[0])
                     num = num + 1
                     line = f.readline()
             else:
@@ -74,4 +74,4 @@ if __name__ == '__main__':
     #         content = law_content['content']
     #         print(content)
     #         count = count + 1
-    sentences_parser(dir_path + "\\本溪市野生鸟类保护办法.txt")
+    sentences_parser(dir_path + "\\太原市城市绿化条例.txt")

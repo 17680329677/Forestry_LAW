@@ -47,13 +47,16 @@ def law_parse(path):
                 law_content['catalogue'] = line.split('】')[-1].strip()
             elif line.startswith('【法规全文】'):
                 law_content['content'] = line.split('】')[-1].strip()
-                line = f.readline().strip()
+                line = f.readline()
                 while line:
                     law_content['content'] += line
                     line = f.readline()
+                    if len(line) > 2:
+                        line = line.lstrip()
             line = f.readline().strip()
     return law_content
 
 
-# if __name__ == '__main__':
-#     law_parse(r"C:\Users\dhz1216\Desktop\wenben\“三北”防护林体系建设资金管理暂行办法.txt")
+if __name__ == '__main__':
+    # print(law_parse(r"C:\Users\dhz1216\Desktop\wenben\安徽省淮南市城市绿化条例.txt")['content'])
+    print(law_parse(r"C:\Users\dhz1216\Desktop\wenben\沈阳市城市绿化条例.txt")['content'])
