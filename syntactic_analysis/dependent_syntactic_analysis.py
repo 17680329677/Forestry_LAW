@@ -42,7 +42,8 @@ def test_pyltp():
 
 
 def ltp_networks():
-    sentence = "任何单位和个人都有保护古树名木的义务"
+    sentence = "本办法自发布之日起执行，由水利部负责解释。"
+    sentence = "本办法由林业部负责解释。"
     words = list(segmentor.segment(sentence))   # 分词
     postags = list(postagger.postag(words))     # 词性标注
     arcs = parser.parse(words, postags)     # 依存句法分析
@@ -61,11 +62,14 @@ def ltp_networks():
         G.add_node(w)
     for i in range(len(ah)):
         j = ah[i]
-        G.add_edge(words[i], tree[j])
+        # G.add_edge(words[i], tree[j])
+        G.add_edge(tree[j], words[i])
 
     # 可视化
     mp.rcParams['font.sans-serif'] = ['SimHei']     # 用黑体显示中文
     nx.draw(G, with_labels=True, node_color='lightgreen', font_size=15, node_size=2000, width=3, alpha=0.8)
+    fig = mp.gcf()
+    fig.set_size_inches(12, 8)
     mp.show()
 
 

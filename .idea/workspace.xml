@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="db885a91-496a-4eb5-8226-be0c9a37fd31" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/syntactic_analysis/dependent_syntactic_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntactic_analysis/dependent_syntactic_analysis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sentences/level_parser/content_level_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
+            <state relative-caret-position="-300">
+              <caret selection-end-line="2" selection-end-column="22" />
               <folding>
                 <element signature="e#64#73#0" expanded="true" />
               </folding>
@@ -52,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/syntactic_analysis/sentence_extract.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="56" selection-start-line="56" selection-end-line="59" selection-end-column="34" />
+            <state relative-caret-position="50">
+              <caret line="38" column="89" selection-start-line="38" selection-start-column="77" selection-end-line="38" selection-end-column="89" />
               <folding>
                 <element signature="e#16#25#0" expanded="true" />
               </folding>
@@ -61,13 +61,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/syntactic_analysis/dependent_syntactic_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="69" column="46" lean-forward="true" selection-start-line="69" selection-start-column="46" selection-end-line="69" selection-end-column="46" />
+            <state relative-caret-position="-988">
+              <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/knowledge_graph/law_process.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="140" column="37" selection-start-line="140" selection-start-column="37" selection-end-line="140" selection-end-column="37" />
+              <folding>
+                <element signature="e#69#99#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -125,10 +137,11 @@
         <option value="$PROJECT_DIR$/syntactic_analysis/test.py" />
         <option value="$PROJECT_DIR$/syntactic_analysis/sentence_extract.py" />
         <option value="$PROJECT_DIR$/syntactic_analysis/dependent_syntactic_analysis.py" />
+        <option value="$PROJECT_DIR$/knowledge_graph/law_process.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-114" />
     <option name="y" value="72" />
     <option name="width" value="1936" />
@@ -151,17 +164,7 @@
             <path>
               <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
               <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
-              <item name="baidu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
-              <item name="syntactic_analysis" type="462c0819:PsiDirectoryNode" />
+              <item name="knowledge_graph" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -198,29 +201,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.dependent_syntactic_analysis">
-    <configuration name="content_level_parser" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Forestry_LAW" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sentences/level_parser" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sentences/level_parser/content_level_parser.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.law_process">
     <configuration name="dependent_syntactic_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Forestry_LAW" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -235,6 +216,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/syntactic_analysis/dependent_syntactic_analysis.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="law_process" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Forestry_LAW" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/knowledge_graph" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/knowledge_graph/law_process.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -311,11 +314,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.law_process" />
         <item itemvalue="Python.dependent_syntactic_analysis" />
         <item itemvalue="Python.sentence_extract" />
         <item itemvalue="Python.test (1)" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.content_level_parser" />
       </list>
     </recent_temporary>
   </component>
@@ -340,15 +343,15 @@
       <workItem from="1568775014620" duration="12716000" />
       <workItem from="1570761708043" duration="10613000" />
       <workItem from="1571028488927" duration="38456000" />
-      <workItem from="1571193090963" duration="23629000" />
+      <workItem from="1571193090963" duration="48584000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127983000" />
+    <option name="totallyTimeSpent" value="152938000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49805447" visible="true" weight="0.27985075" />
@@ -356,21 +359,21 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.40200445" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3986637" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.40200445" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.3986637" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.40200445" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32814237" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.3986637" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32739422" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32962137" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.32995737" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.5517058" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
@@ -395,29 +398,30 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Forestry_LAW$trees_and_seeds_parser.coverage" NAME="trees_and_seeds_parser Coverage Results" MODIFIED="1571057190286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$baidu_parse.coverage" NAME="baidu_parse Coverage Results" MODIFIED="1568275185211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/baidu" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$dependent_syntactic_analysis.coverage" NAME="dependent_syntactic_analysis Coverage Results" MODIFIED="1571319164947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$property_collect.coverage" NAME="property_collect Coverage Results" MODIFIED="1570772926520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$wild_animals_parser.coverage" NAME="wild_animals_parser Coverage Results" MODIFIED="1571108073118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$test.coverage" NAME="test Coverage Results" MODIFIED="1571195462399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parser" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$wetland_law_parser.coverage" NAME="wetland_law_parser Coverage Results" MODIFIED="1571056474890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$sentence_extract.coverage" NAME="sentence_extract Coverage Results" MODIFIED="1571297429438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$washing.coverage" NAME="washing Coverage Results" MODIFIED="1566978657560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$forest_fire_prevention.coverage" NAME="forest_fire_prevention Coverage Results" MODIFIED="1571055790573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$mongo_parse.coverage" NAME="mongo_parse Coverage Results" MODIFIED="1570766439019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1571288511160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$save_to_db.coverage" NAME="save_to_db Coverage Results" MODIFIED="1566980936819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$save_to_mongo.coverage" NAME="save_to_mongo Coverage Results" MODIFIED="1566983214795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$jieba.coverage" NAME="jieba Coverage Results" MODIFIED="1567584165109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$soil_and_water_conservation_parser.coverage" NAME="soil_and_water_conservation_parser Coverage Results" MODIFIED="1571054738286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$environment_protection_parser.coverage" NAME="environment_protection_parser Coverage Results" MODIFIED="1571119528474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences/classify_parser" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$sentences_parser.coverage" NAME="sentences_parser Coverage Results" MODIFIED="1570774677372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$law_process.coverage" NAME="law_process Coverage Results" MODIFIED="1571475688852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_graph" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$science_spot_parser.coverage" NAME="science_spot_parser Coverage Results" MODIFIED="1571052941170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$classify.coverage" NAME="classify Coverage Results" MODIFIED="1567070946560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$segment.coverage" NAME="segment Coverage Results" MODIFIED="1567652075698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$forest_park_parser.coverage" NAME="forest_park_parser Coverage Results" MODIFIED="1571056082176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$content_level_parser.coverage" NAME="content_level_parser Coverage Results" MODIFIED="1571144725780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences/level_parser" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$greening_regulations_parser.coverage" NAME="greening_regulations_parser Coverage Results" MODIFIED="1571051048727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$baidu_parse.coverage" NAME="baidu_parse Coverage Results" MODIFIED="1568275185211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/baidu" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$dependent_syntactic_analysis.coverage" NAME="dependent_syntactic_analysis Coverage Results" MODIFIED="1571386515821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$washing.coverage" NAME="washing Coverage Results" MODIFIED="1566978657560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$forest_fire_prevention.coverage" NAME="forest_fire_prevention Coverage Results" MODIFIED="1571055790573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1571288511160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$jieba.coverage" NAME="jieba Coverage Results" MODIFIED="1567584165109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$forest_park_parser.coverage" NAME="forest_park_parser Coverage Results" MODIFIED="1571056082176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/baidu/__init__.py">
@@ -629,32 +633,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sentences/level_parser/content_level_parser.py">
+    <entry file="file://$PROJECT_DIR$/syntactic_analysis/dependent_syntactic_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
+        <state relative-caret-position="-988">
+          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding>
-            <element signature="e#64#73#0" expanded="true" />
+            <element signature="e#0#64#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/syntactic_analysis/sentence_extract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="56" selection-start-line="56" selection-end-line="59" selection-end-column="34" />
+        <state relative-caret-position="50">
+          <caret line="38" column="89" selection-start-line="38" selection-start-column="77" selection-end-line="38" selection-end-column="89" />
           <folding>
             <element signature="e#16#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntactic_analysis/dependent_syntactic_analysis.py">
+    <entry file="file://$PROJECT_DIR$/sentences/level_parser/content_level_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="69" column="46" lean-forward="true" selection-start-line="69" selection-start-column="46" selection-end-line="69" selection-end-column="46" />
+        <state relative-caret-position="-300">
+          <caret selection-end-line="2" selection-end-column="22" />
           <folding>
-            <element signature="e#0#64#0" expanded="true" />
+            <element signature="e#64#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/knowledge_graph/law_process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="140" column="37" selection-start-line="140" selection-start-column="37" selection-end-line="140" selection-end-column="37" />
+          <folding>
+            <element signature="e#69#99#0" expanded="true" />
           </folding>
         </state>
       </provider>
