@@ -1,11 +1,8 @@
 # -*- coding : utf-8 -*-
 # coding: utf-8
 # 再次处理基础法律数据，为构建一个小的知识图谱做准备
-from data_resource import conn
 from pyltp import Parser, SentenceSplitter, Segmentor, Postagger
 from data_resource import conn
-import networkx as nx
-import matplotlib.pyplot as mp
 
 MODEL_DIR_PATH = "E:\\ltp_data_v3.4.0\\"
 SEGMENTOR_MODEL = MODEL_DIR_PATH + "cws.model"  # LTP分词模型库
@@ -119,9 +116,19 @@ def area_index(word):       # 地区索引对应
     area_select_sql = 'select * from area'  # 查询标准地区(县、区)
     cursor.execute(area_select_sql)
     areas = cursor.fetchall()
+    area_dict = dict()
+    for area in areas:
+        area_key = area[2].replace(' ', '').replace('市', '').replace('县', '').replace('区', '')  # 将“区”，“县”以及空格去掉，方便比较
+        area_dict.update({area_key: area[1]})
+    word = word.replace(' ', '').replace('市', '').replace('县', '').replace('区', '')
+    if word in area_dict:
+        code = area_dict[word]
+        return {word: code}
+    else:
+        return None
 
 
-def location_alignment():       # 利用国内标准的省市县划分将识别并提取出来的归属地进行对齐
+def location_alignment():       # 利用国内标准的省市县划分将识别并提取出来的归属地进行对齐-----最大精度对齐到城市，区县级较少，没必要进行对齐
     cursor = conn.cursor()
     location_select_sql = 'select id, location from law'    # 查询提取出的归属地
     cursor.execute(location_select_sql)
@@ -131,10 +138,21 @@ def location_alignment():       # 利用国内标准的省市县划分将识别�
         words = list(segmentor.segment(location[1]))
         for i in range(len(words)):
             province_info = province_index(words[i])
-            if province_info is not None and i + 1 < len(words):        # 省份不是空的情况
-                city_info = city_index(words[i + 1])
+            if province_info is not None:        # 省份不是空的情况
+                province_name = list(province_info.keys())[0]
+                province_code = list(province_info.values())[0]
+                city_info = None
+                if i + 1 < len(words):
+                    city_info = city_index(words[i + 1])
                 if city_info is not None:
-                    print(list(province_info.keys())[0] + list(city_info.keys())[0])
+                    city_name = list(city_info.keys())[0]
+                    city_code = list(city_info.values())[0]
+                    # -----------------------------------做一次对齐更新，更新到城市
+                    update_law(province_name + city_name, city_code, 3, location[0])
+                else:
+                    # -----------------------------------做一次对齐更新，更新到省份
+                    update_law(province_name, province_code, 2, location[0])
+                    pass
             elif city_index(words[i]) is not None:
                 city_info = city_index(words[i])
                 city_code = list(city_info.values())[0]
@@ -142,7 +160,20 @@ def location_alignment():       # 利用国内标准的省市县划分将识别�
                 select_sql = "select name from province where code = (select provincecode from city where code = %s)"
                 cursor.execute(select_sql, (city_code))
                 province_name = cursor.fetchone()[0]
-                print(province_name + city_name)
+                # --------------------------------------做一次对齐更新，更新到城市
+                update_law(province_name + city_name, city_code, 3, location[0])
+
+
+def update_law(location, location_code, location_level, law_id):
+    cursor = conn.cursor()
+    update_sql = "update law set location = %s, location_code = %s, location_level = %s where id = %s"
+    try:
+        cursor.execute(update_sql, (location, location_code, location_level, law_id))
+        conn.commit()
+        print(str(law_id) + '-----------------------UPDATE SUCCESS')
+    except Exception as e:
+        conn.rollback()
+        print('\033[1;32;41m' + str(law_id) + ': FAILED---------' + e + '\033[0m')
 
 
 if __name__ == '__main__':
