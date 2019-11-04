@@ -176,7 +176,34 @@ def update_law(location, location_code, location_level, law_id):
         print('\033[1;32;41m' + str(law_id) + ': FAILED---------' + e + '\033[0m')
 
 
+def law_province_code_update():         # 提取法律所在省份的省份代码并更新law表的province_code字段
+    select_sql = "select id, name, location, location_code from law"
+    update_sql = "update law set province_code = %s where id = %s"
+    cursor = conn.cursor()
+    cursor.execute(select_sql)
+    laws = cursor.fetchall()
+    for law in laws:
+        law_id = law[0]
+        law_name = law[1]
+        law_location = law[2]
+        if law[3] is not None:      # location_code不为None的时候更新
+            law_location_code = law[3]
+            province_code = str(law_location_code)[0:2] + '0000'
+        else:
+            province_code = '000000'
+
+        try:
+            cursor.execute(update_sql, (province_code, law_id))
+            conn.commit()
+            print(law_name + '-------------------SUCCESS')
+        except Exception as e:
+            conn.rollback()
+            print('\033[1;32;41m' + law_name + ': FAILED---------' + e + '\033[0m')
+
+
 if __name__ == '__main__':
     # location_extract()      # 归属地识别
 
-    location_alignment()    # 标准归属地对齐
+    # location_alignment()    # 标准归属地对齐
+
+    law_province_code_update()      # 提取法律所在省份的省份代码并更新law表的province_code字段

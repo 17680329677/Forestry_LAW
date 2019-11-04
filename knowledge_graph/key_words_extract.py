@@ -116,7 +116,30 @@ def law_classify():         # 法律法规文本归类
         print(text_name + '------------------' + class_type + str(class_id))
 
 
+def law_to_class_process():         # 为mysql中law表添加class_id一列，对应类别的ID
+    cursor = conn.cursor()
+    law_select = "select id, type, name from law"
+    class_select_sql = "select id from law_class where type = %s"
+    update_sql = "update law set class_id = %s where id = %s"
+    cursor.execute(law_select)
+    laws = cursor.fetchall()
+    for law in laws:
+        law_id = law[0]
+        law_type = law[1]
+        cursor.execute(class_select_sql, (law_type))
+        class_info = cursor.fetchone()
+        class_id = class_info[0]
+        try:
+            cursor.execute(update_sql, (class_id, law_id))
+            conn.commit()
+            print(law[2] + '-----------------SUCCESS')
+        except Exception as e:
+            conn.rollback()
+            print('\033[1;32;41m' + law[2] + ': PARSE FAILED---------' + e + '\033[0m')
+
+
 if __name__ == '__main__':
     # key_words_extract()       # 关键词提取
     # statistic_keywords_num()      # 统计关键词出现的次数
-    law_classify()      # 类别归属
+    # law_classify()      # 类别归属
+    law_to_class_process()
