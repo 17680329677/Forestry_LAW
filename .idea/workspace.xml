@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db885a91-496a-4eb5-8226-be0c9a37fd31" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knowledge_graph/key_words_extract.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_graph/key_words_extract.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knowledge_graph/law_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_graph/law_process.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,13 +36,37 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/knowledge_graph/law_process.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
+            <state relative-caret-position="523">
               <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
               <folding>
                 <element signature="e#69#133#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sentences/level_parser/content_level_parser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="109" column="105" selection-start-line="109" selection-start-column="38" selection-end-line="109" selection-end-column="105" />
+              <folding>
+                <element signature="e#64#73#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/knowledge_graph/sentence_process.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="615">
+              <caret line="65" column="26" lean-forward="true" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
+              <folding>
+                <element signature="e#71#80#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,12 +126,13 @@
         <option value="$PROJECT_DIR$/syntactic_analysis/dependent_syntactic_analysis.py" />
         <option value="$PROJECT_DIR$/knowledge_graph/key_words_extract.py" />
         <option value="$PROJECT_DIR$/knowledge_graph/law_process.py" />
+        <option value="$PROJECT_DIR$/knowledge_graph/sentence_process.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-88" />
-    <option name="y" value="31" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -136,6 +159,17 @@
               <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
               <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
               <item name="knowledge_graph" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
+              <item name="sentences" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
+              <item name="sentences" type="462c0819:PsiDirectoryNode" />
+              <item name="level_parser" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -172,7 +206,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.law_process">
+  <component name="RunManager" selected="Python.sentence_process">
     <configuration name="dependent_syntactic_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Forestry_LAW" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -261,7 +295,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="sentence_process" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Forestry_LAW" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -269,12 +303,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/syntactic_analysis" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/knowledge_graph" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="F:\Projects\Forestry_LAW\syntactic_analysis\sentence_extract.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/knowledge_graph/sentence_process.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -285,11 +319,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.sentence_process" />
         <item itemvalue="Python.law_process" />
         <item itemvalue="Python.key_words_extract" />
         <item itemvalue="Python.dependent_syntactic_analysis" />
         <item itemvalue="Python.sentence_extract" />
-        <item itemvalue="Python.test (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -315,22 +349,23 @@
       <workItem from="1570761708043" duration="10613000" />
       <workItem from="1571028488927" duration="38456000" />
       <workItem from="1571193090963" duration="74855000" />
-      <workItem from="1572839754077" duration="5022000" />
+      <workItem from="1572839754077" duration="13311000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184231000" />
+    <option name="totallyTimeSpent" value="192520000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49805447" visible="true" weight="0.28304905" />
       <window_info id="Structure" order="1" sideWeight="0.5019455" side_tool="true" weight="0.2707889" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.48218262" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.31514478" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.3986637" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -382,6 +417,7 @@
     <SUITE FILE_PATH="coverage/Forestry_LAW$environment_protection_parser.coverage" NAME="environment_protection_parser Coverage Results" MODIFIED="1571119528474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences/classify_parser" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$sentences_parser.coverage" NAME="sentences_parser Coverage Results" MODIFIED="1570774677372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$law_process.coverage" NAME="law_process Coverage Results" MODIFIED="1572869447211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_graph" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$sentence_process.coverage" NAME="sentence_process Coverage Results" MODIFIED="1572924660029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_graph" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$science_spot_parser.coverage" NAME="science_spot_parser Coverage Results" MODIFIED="1571052941170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$classify.coverage" NAME="classify Coverage Results" MODIFIED="1567070946560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$segment.coverage" NAME="segment Coverage Results" MODIFIED="1567652075698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
@@ -599,16 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sentences/level_parser/content_level_parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-300">
-          <caret selection-end-line="2" selection-end-column="22" />
-          <folding>
-            <element signature="e#64#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/builtins.pyi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="787">
@@ -645,10 +671,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/knowledge_graph/law_process.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
+        <state relative-caret-position="523">
           <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
           <folding>
             <element signature="e#69#133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sentences/level_parser/content_level_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="109" column="105" selection-start-line="109" selection-start-column="38" selection-end-line="109" selection-end-column="105" />
+          <folding>
+            <element signature="e#64#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/knowledge_graph/sentence_process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="65" column="26" lean-forward="true" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
+          <folding>
+            <element signature="e#71#80#0" expanded="true" />
           </folding>
         </state>
       </provider>
