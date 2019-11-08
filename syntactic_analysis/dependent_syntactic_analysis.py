@@ -1,4 +1,4 @@
-from pyltp import Parser, SentenceSplitter, Segmentor, Postagger
+from pyltp import Parser, SentenceSplitter, Segmentor, Postagger, SementicRoleLabeller
 from data_resource import conn
 import networkx as nx
 import matplotlib.pyplot as mp
@@ -7,14 +7,17 @@ MODEL_DIR_PATH = "E:\\ltp_data_v3.4.0\\"
 SEGMENTOR_MODEL = MODEL_DIR_PATH + "cws.model"  # LTP分词模型库
 POSTAGGER_MODEL = MODEL_DIR_PATH + "pos.model"  # LTP词性标注模型库
 PARSER_MODEL = MODEL_DIR_PATH + "parser.model"  # LTP依存分析模型库
+ROLE_LABELLER_MODEL = MODEL_DIR_PATH + "pisrl_win.model"    # LTP语义角色标注模型库
 
 segmentor = Segmentor()  # 初始化分词实例
 postagger = Postagger()  # 初始化词性标注实例
 parser = Parser()  # 初始化依存句法分析实例
+labeller = SementicRoleLabeller()   # 初始化语义角色标注实例
 
 segmentor.load(SEGMENTOR_MODEL)     # 加载分词模型库
 postagger.load(POSTAGGER_MODEL)     # 加载词性标注模型库
 parser.load(PARSER_MODEL)  # 加载依存分析库
+labeller.load(ROLE_LABELLER_MODEL)      # 加载语义角色标注库
 
 
 def test_pyltp_sentence_split():
@@ -44,6 +47,7 @@ def test_pyltp():
 def ltp_networks():
     sentence = "本办法自发布之日起执行，由水利部负责解释。"
     sentence = "本办法由林业部负责解释。"
+    sentence = "城市公共绿地的养护管理由市和区县城市绿化行政主管部门负责"
     words = list(segmentor.segment(sentence))   # 分词
     postags = list(postagger.postag(words))     # 词性标注
     arcs = parser.parse(words, postags)     # 依存句法分析
@@ -73,6 +77,19 @@ def ltp_networks():
     mp.show()
 
 
+def role_labeller_test():       # 语义角色标注测试
+    sentence = "本办法由林业部负责解释。"
+    sentence = "城市公共绿地的养护管理由市和区县城市绿化行政主管部门负责"
+    words = list(segmentor.segment(sentence))
+    postags = list(postagger.postag(words))  # 词性标注
+    arcs = parser.parse(words, postags)  # 依存句法分析
+    roles = labeller.label(words, postags, arcs)
+    for role in roles:
+        print(role.index, "".join(["%s:(%d,%d)" % (arg.name, arg.range.start, arg.range.end) for arg in role.arguments]))
+    labeller.release()
+
+
 if __name__ == '__main__':
     # test_pyltp()
-    ltp_networks()
+    # ltp_networks()
+    role_labeller_test()
