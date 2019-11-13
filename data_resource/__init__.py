@@ -4,8 +4,8 @@ from pymongo import MongoClient
 import pymysql
 
 # MongoDB连接资源
-conn = MongoClient('localhost', 27017)
-db = conn.forestry_law
+mongo_conn = MongoClient('localhost', 27017)
+db = mongo_conn.forestry_law
 collection = db.law
 
 # Mysql连接资源

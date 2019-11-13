@@ -78,12 +78,14 @@ def ltp_networks():
 
 
 def role_labeller_test():       # 语义角色标注测试
-    sentence = "本办法由林业部负责解释。"
-    sentence = "城市公共绿地的养护管理由市和区县城市绿化行政主管部门负责"
+    # sentence = "本办法由林业部负责解释。"
+    # sentence = "城市公共绿地的养护管理由市和区县城市绿化行政主管部门负责"
+    sentence = "项目开工须具备下列条件："
     words = list(segmentor.segment(sentence))
     postags = list(postagger.postag(words))  # 词性标注
     arcs = parser.parse(words, postags)  # 依存句法分析
     roles = labeller.label(words, postags, arcs)
+    print(len(roles))
     for role in roles:
         print(role.index, "".join(["%s:(%d,%d)" % (arg.name, arg.range.start, arg.range.end) for arg in role.arguments]))
     labeller.release()
