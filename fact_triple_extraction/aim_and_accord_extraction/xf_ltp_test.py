@@ -201,39 +201,5 @@ def get_tags():
     return dp_tags, sdp_tags
 
 
-def strip_sdp_tags():           # 临时脚本，去掉sdp_tag中的空格
-    select_sdp_tag = '''select * from semantic_dependency_parse'''  # 语义依存分析分析
-    update_sdp_tag = '''update semantic_dependency_parse set tag = %s, name = %s where id = %s'''
-    cursor = conn.cursor()
-    cursor.execute(select_sdp_tag)
-    results = cursor.fetchall()
-    for res in results:
-        id = res[0]
-        tag = str(res[1]).strip()
-        name = str(res[2]).strip()
-        desc = str(res[3]).strip()
-        example = str(res[4]).strip()
-        try:
-            cursor.execute(update_sdp_tag, (tag, name, id))
-            conn.commit()
-        except Exception as e:
-            print(str(id), '-----FAILED---', e)
-
-
 if __name__ == '__main__':
-
-    # word_segment(TEXT)
-
-    # word_postag(TEXT)
-
-    # chinese_ner("水土流失监测项目的前期工作设计报告由海委负责组织编制，水利部审批。")
-
-    # dependency_parse(TEXT)
-
-    # semantic_role_labeller(TEXT)
-
-    # semantic_dependency_parse(TEXT)
-
     content_nlp(TEXT)
-
-    # get_tags()
