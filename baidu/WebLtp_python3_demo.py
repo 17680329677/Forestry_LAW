@@ -6,8 +6,9 @@ import urllib.parse
 import json
 import hashlib
 import base64
+import ast
 # 接口地址
-url = "http://ltpapi.xfyun.cn/v1/sdgp"
+url = "https://ltpapi.xfyun.cn/v1/sdgp"
 # 开放平台应用ID
 x_appid = "5dcb67fc"
 # 开放平台应用接口秘钥
@@ -29,9 +30,18 @@ def main():
     req = urllib.request.Request(url, body, x_header)
     result = urllib.request.urlopen(req)
     result = result.read()
-    print(result.decode('utf-8'))
-    return
+    # print(result.decode('utf-8'))
+    return ast.literal_eval(result.decode('utf-8'))
+
+
+def func_cas(res, func, content):
+    count = 1
+    while res['code'] == "10700":
+        res = func()
+        count = count + 1
+    print(count, '---', res)
+    return res
 
 
 if __name__ == '__main__':
-    main()
+    func_cas(main(), main, TEXT)
