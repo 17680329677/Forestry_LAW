@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-from fact_triple_extraction.aim_and_accord_extraction.xf_ltp_test import *
+from fact_triple_extraction.xf_ltp_api import *
 import time
 import re
 

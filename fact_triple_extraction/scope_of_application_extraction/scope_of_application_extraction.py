@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
 # 抽取法律法规的适用范围
-from data_resource import conn
 import re
-from fact_triple_extraction.aim_and_accord_extraction.xf_ltp_test import *
+from fact_triple_extraction.xf_ltp_api import *
 
 
 def get_chapter_law_mapping():      # 获取chapter和law的ID对应字典
