@@ -7,10 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db885a91-496a-4eb5-8226-be0c9a37fd31" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/fact_triple_extraction/response_to_explain/responsible_to_explain.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction/aim_and_accord_extract.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction/aim_and_accord_extract.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction/xf_ltp_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/responsible_to_explain.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/responsible_to_explain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/Digraph.gv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/Digraph.gv.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/responsible_to_explain.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/scope_of_application_extraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/scope_of_application_extraction.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,49 +20,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xunfei_graphviz.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="815">
-                    <caret line="84" column="4" lean-forward="true" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
-                    <folding>
-                      <element signature="e#67#95#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-282">
-              <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
-              <folding>
-                <element signature="e#57#68#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fact_triple_extraction/responsible_to_explain.py">
+        <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xunfei_graphviz.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+            <state relative-caret-position="-300">
+              <caret line="21" column="15" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="15" />
               <folding>
-                <element signature="e#37#89#0" expanded="true" />
+                <element signature="e#67#95#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/scope_of_application_extraction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-546">
-              <caret line="95" column="31" lean-forward="true" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
+            <state relative-caret-position="-696">
+              <caret line="90" column="55" lean-forward="true" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
               <folding>
                 <element signature="e#51#60#0" expanded="true" />
               </folding>
@@ -156,12 +123,12 @@
         <option value="$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction/aim_and_accord_extract.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/find_regular.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction.py" />
-        <option value="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/scope_of_application_extraction.py" />
         <option value="$PROJECT_DIR$/baidu/WebLtp_python3_demo.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction/xf_ltp_test.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py" />
-        <option value="$PROJECT_DIR$/fact_triple_extraction/responsible_to_explain.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/xunfei_graphviz.py" />
+        <option value="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/scope_of_application_extraction.py" />
+        <option value="$PROJECT_DIR$/fact_triple_extraction/responsible_to_explain.py" />
       </list>
     </option>
   </component>
@@ -177,7 +144,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,23 +154,18 @@
             <path>
               <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
               <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
-              <item name="baidu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
               <item name="fact_triple_extraction" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
               <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
-              <item name="fact_triple_extraction" type="462c0819:PsiDirectoryNode" />
-              <item name="scope_of_application_extraction" type="462c0819:PsiDirectoryNode" />
+              <item name="sentences" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
+              <item name="sentences" type="462c0819:PsiDirectoryNode" />
+              <item name="level_parser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
@@ -215,6 +176,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,17 +188,17 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Projects\Forestry_LAW\fact_triple_extraction" />
-      <recent name="F:\Projects\Forestry_LAW\fact_triple_extraction\scope_of_application_extraction" />
-      <recent name="F:\Projects\Forestry_LAW\knowledge_graph\basic_kg_process" />
-      <recent name="F:\Projects\Forestry_LAW\fact_triple_extraction\triple_extraction_example" />
-      <recent name="F:\Projects\Forestry_LAW\syntactic_analysis" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Projects\Forestry_LAW\baidu" />
       <recent name="F:\Projects\Forestry_LAW\fact_triple_extraction" />
       <recent name="F:\Projects\Forestry_LAW\sentences" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Projects\Forestry_LAW\fact_triple_extraction\response_to_explain" />
+      <recent name="F:\Projects\Forestry_LAW\fact_triple_extraction" />
+      <recent name="F:\Projects\Forestry_LAW\fact_triple_extraction\scope_of_application_extraction" />
+      <recent name="F:\Projects\Forestry_LAW\knowledge_graph\basic_kg_process" />
+      <recent name="F:\Projects\Forestry_LAW\fact_triple_extraction\triple_extraction_example" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -287,7 +249,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fact_triple_extraction/responsible_to_explain.py" />
+      <option name="SCRIPT_NAME" value="F:\Projects\Forestry_LAW\fact_triple_extraction\response_to_explain\responsible_to_explain.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -365,10 +327,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.responsible_to_explain" />
+        <item itemvalue="Python.scope_of_application_extraction (1)" />
         <item itemvalue="Python.xunfei_graphviz" />
         <item itemvalue="Python.xf_ltp_test" />
         <item itemvalue="Python.WebLtp_python3_demo" />
-        <item itemvalue="Python.scope_of_application_extraction (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -401,28 +363,29 @@
       <workItem from="1573614080355" duration="1478000" />
       <workItem from="1573697543080" duration="27318000" />
       <workItem from="1573884792750" duration="31708000" />
-      <workItem from="1574126021966" duration="42764000" />
+      <workItem from="1574126021966" duration="42890000" />
+      <workItem from="1574913771288" duration="13285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="369414000" />
+    <option name="totallyTimeSpent" value="382825000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49805447" visible="true" weight="0.22334754" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49805447" visible="true" weight="0.22547974" />
       <window_info id="Structure" order="1" sideWeight="0.5019455" side_tool="true" weight="0.2707889" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.3830735" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" weight="0.3830735" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.37750557" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.64699334" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5026652" side_tool="true" weight="0.3830735" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32628062" />
@@ -469,6 +432,13 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -496,7 +466,7 @@
     <SUITE FILE_PATH="coverage/Forestry_LAW$law_process.coverage" NAME="law_process Coverage Results" MODIFIED="1572869447211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_graph" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$sentence_process.coverage" NAME="sentence_process Coverage Results" MODIFIED="1573096552722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_graph" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$science_spot_parser.coverage" NAME="science_spot_parser Coverage Results" MODIFIED="1571052941170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$responsible_to_explain.coverage" NAME="responsible_to_explain Coverage Results" MODIFIED="1574327704043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$responsible_to_explain.coverage" NAME="responsible_to_explain Coverage Results" MODIFIED="1575017913701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$classify.coverage" NAME="classify Coverage Results" MODIFIED="1567070946560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$segment.coverage" NAME="segment Coverage Results" MODIFIED="1567652075698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$content_level_parser.coverage" NAME="content_level_parser Coverage Results" MODIFIED="1571144725780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences/level_parser" />
@@ -512,21 +482,11 @@
     <SUITE FILE_PATH="coverage/Forestry_LAW$graphviz_test.coverage" NAME="graphviz_test Coverage Results" MODIFIED="1573187756436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$jieba.coverage" NAME="jieba Coverage Results" MODIFIED="1567584165109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$syntactic_analysis_core.coverage" NAME="syntactic_analysis_core Coverage Results" MODIFIED="1573548918051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$scope_of_application_extraction__1_.coverage" NAME="scope_of_application_extraction (1) Coverage Results" MODIFIED="1574152424351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$scope_of_application_extraction__1_.coverage" NAME="scope_of_application_extraction (1) Coverage Results" MODIFIED="1575017582981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$forest_park_parser.coverage" NAME="forest_park_parser Coverage Results" MODIFIED="1571056082176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$xf_ltp_test.coverage" NAME="xf_ltp_test Coverage Results" MODIFIED="1574158930764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sentences/classify_parser/science_spot_parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
-          <folding>
-            <element signature="e#79#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sentences/classify_parser/soil_and_water_conservation_parser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -629,16 +589,6 @@
     <entry file="file://$PROJECT_DIR$/knowledge_graph/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/sentences/level_parser/content_level_parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-50">
-          <caret line="106" column="50" lean-forward="true" selection-start-line="106" selection-start-column="50" selection-end-line="106" selection-end-column="50" />
-          <folding>
-            <element signature="e#64#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sentences/classify_parser/environment_protection_parser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
@@ -692,13 +642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/anaconda/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="308" selection-start-line="308" selection-end-line="308" />
         </state>
       </provider>
     </entry>
@@ -861,16 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntactic_analysis/graphviz_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="44" column="71" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/syntactic_analysis/dependent_syntactic_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1250">
@@ -881,19 +814,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/scope_of_application_extraction.py">
+    <entry file="file://E:/anaconda/Lib/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-546">
-          <caret line="95" column="31" lean-forward="true" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
-          <folding>
-            <element signature="e#51#60#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="169">
+          <caret line="319" selection-start-line="319" selection-end-line="319" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-282">
+        <state relative-caret-position="-4621">
           <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
           <folding>
             <element signature="e#57#68#0" expanded="true" />
@@ -901,22 +831,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xunfei_graphviz.py">
+    <entry file="file://$PROJECT_DIR$/syntactic_analysis/graphviz_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="84" column="4" lean-forward="true" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
+        <state relative-caret-position="1100">
+          <caret line="44" column="71" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="71" />
           <folding>
-            <element signature="e#67#95#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/responsible_to_explain.py">
+    <entry file="file://$PROJECT_DIR$/sentences/level_parser/content_level_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="100">
+          <caret line="109" column="106" lean-forward="true" selection-start-line="109" selection-start-column="32" selection-end-line="109" selection-end-column="106" />
+          <folding>
+            <element signature="e#64#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/scope_of_application_extraction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-696">
+          <caret line="90" column="55" lean-forward="true" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
+          <folding>
+            <element signature="e#51#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/response_to_explain/responsible_to_explain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="106" column="83" selection-start-line="106" selection-start-column="83" selection-end-line="106" selection-end-column="83" />
           <folding>
             <element signature="e#37#89#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xunfei_graphviz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300">
+          <caret line="21" column="15" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="15" />
+          <folding>
+            <element signature="e#67#95#0" expanded="true" />
           </folding>
         </state>
       </provider>

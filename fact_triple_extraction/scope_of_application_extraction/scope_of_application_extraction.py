@@ -90,7 +90,7 @@ def scope_of_application_extrate(contents):
     pattern_4 = "(.*?)适用本(办法|条例|规定|法|细则)"
     output_file = "C:\\Users\\dhz1216\\Desktop\\test\\test.txt"
     cursor = conn.cursor()
-    insert_sql = '''insert into scope_of_application (law_id, scope_of_application) value (%s, %s)'''
+    insert_sql = '''insert into scope_of_application (law_id, scope_of_application, from_sentence) value (%s, %s, %s)'''
     with open(output_file, "a") as w:
         for content in contents:
             law_id = content[0]
@@ -115,8 +115,9 @@ def scope_of_application_extrate(contents):
                     continue
                 main_sentence = result[1]
             w.write(str(law_id) + '---' + main_sentence + '\n')
+            from_sentence = content[1]
             try:
-                cursor.execute(insert_sql, (law_id, main_sentence))
+                cursor.execute(insert_sql, (law_id, main_sentence, from_sentence))
                 conn.commit()
                 print(law_id, '---', main_sentence, '---SUCCESS')
             except Exception as e:
