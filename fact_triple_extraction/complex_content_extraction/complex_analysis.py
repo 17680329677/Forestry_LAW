@@ -6,7 +6,7 @@ from fact_triple_extraction.complex_content_extraction.get_content import *
 
 def xunfei_complex_analysis(contents):
     dp_tags, sdp_tags = get_tags()
-    output_file = "C:\\Users\\dhz1216\\Desktop\\test\\complex_content\\test-1.txt"
+    output_file = "C:\\Users\\dhz1216\\Desktop\\test\\complex_content\\test-2.txt"
     for content_list in contents:
         for content in content_list:
             if '：' in content:
@@ -16,6 +16,8 @@ def xunfei_complex_analysis(contents):
                 # # [{'beg': 0, 'end': 1, 'id': 3, 'type': 'A0'}, {'beg': 4, 'end': 5, 'id': 3, 'type': 'A1'}]
                 srl_info = func_cas(semantic_role_labeller(content), semantic_role_labeller, content, 'srl')  # 语义角色标注分析
                 sdgp_info = func_cas(semantic_dependency_parse(content), semantic_dependency_parse, content, 'sdgp')  # 语义依存分析
+                if words_list is None or postags_list is None or dp_info is None or srl_info is None or sdgp_info is None:
+                    continue
 
                 with open(output_file, "a") as w:
                     w.write(content + '\n')

@@ -8,7 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="db885a91-496a-4eb5-8226-be0c9a37fd31" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+            <state relative-caret-position="448">
+              <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
               <folding>
                 <element signature="e#37#71#0" expanded="true" />
               </folding>
@@ -30,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="-100">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#37#84#0" expanded="true" />
               </folding>
@@ -42,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="122" selection-start-line="122" selection-end-line="122" />
+            <state relative-caret-position="1175">
+              <caret line="170" column="21" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="21" />
               <folding>
                 <element signature="e#57#68#0" expanded="true" />
               </folding>
@@ -79,6 +80,7 @@
       <find>postags</find>
       <find>print</find>
       <find>SentenceSplitter</find>
+      <find>retry</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -132,18 +134,18 @@
         <option value="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/scope_of_application_extraction.py" />
         <option value="$PROJECT_DIR$/baidu/WebLtp_python3_demo.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction/xf_ltp_test.py" />
-        <option value="$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/responsible_to_explain.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/xunfei_graphviz.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/__init__.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py" />
+        <option value="$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py" />
         <option value="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1917" />
-    <option name="y" value="41" />
+    <option name="x" value="9" />
+    <option name="y" value="22" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -372,23 +374,24 @@
       <workItem from="1574927127188" duration="3078000" />
       <workItem from="1575032372292" duration="3458000" />
       <workItem from="1575077935918" duration="5901000" />
-      <workItem from="1575096367034" duration="1737000" />
+      <workItem from="1575096367034" duration="1876000" />
+      <workItem from="1575179120320" duration="1657000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="384171000" />
+    <option name="totallyTimeSpent" value="385967000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-9" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49805447" visible="true" weight="0.23773988" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49805447" visible="true" weight="0.21321961" />
       <window_info id="Structure" order="1" sideWeight="0.5019455" side_tool="true" weight="0.2707889" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" weight="0.38195992" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" visible="true" weight="0.37639198" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.38195992" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.37639198" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -439,11 +442,6 @@
           <line>52</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -487,7 +485,7 @@
     <SUITE FILE_PATH="coverage/Forestry_LAW$forest_fire_prevention.coverage" NAME="forest_fire_prevention Coverage Results" MODIFIED="1571055790573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$graphviz_test.coverage" NAME="graphviz_test Coverage Results" MODIFIED="1573187756436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1571288511160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$complex_analysis.coverage" NAME="complex_analysis Coverage Results" MODIFIED="1575097451629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$complex_analysis.coverage" NAME="complex_analysis Coverage Results" MODIFIED="1575180130133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$jieba.coverage" NAME="jieba Coverage Results" MODIFIED="1567584165109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$syntactic_analysis_core.coverage" NAME="syntactic_analysis_core Coverage Results" MODIFIED="1573548918051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$scope_of_application_extraction__1_.coverage" NAME="scope_of_application_extraction (1) Coverage Results" MODIFIED="1574152424351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction" />
@@ -819,30 +817,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        <state relative-caret-position="448">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
           <folding>
             <element signature="e#37#71#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py">
+    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="1175">
+          <caret line="170" column="21" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="21" />
           <folding>
-            <element signature="e#37#84#0" expanded="true" />
+            <element signature="e#57#68#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py">
+    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
+        <state relative-caret-position="-100">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
           <folding>
-            <element signature="e#57#68#0" expanded="true" />
+            <element signature="e#37#84#0" expanded="true" />
           </folding>
         </state>
       </provider>

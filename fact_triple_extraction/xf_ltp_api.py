@@ -43,6 +43,9 @@ def word_segment(content):      # 分词
     req = urllib.request.Request(url_cws, body, x_header)
     result = urllib.request.urlopen(req)
     result = result.read()
+    if ast.literal_eval(result.decode('utf-8'))['code'] != '0' and \
+            ast.literal_eval(result.decode('utf-8'))['code'] != '10700':
+        print(result)
     # 返回分词结果list: ['项目', '开工', '须', '具备', '下列', '条件', '：']
     # return ast.literal_eval(result.decode('utf-8'))['data']['word']
     return ast.literal_eval(result.decode('utf-8'))
@@ -61,6 +64,9 @@ def word_postag(content):   # 词性标记
     req = urllib.request.Request(url_pos, body, x_header)
     result = urllib.request.urlopen(req)
     result = result.read()
+    if ast.literal_eval(result.decode('utf-8'))['code'] != '0' and \
+            ast.literal_eval(result.decode('utf-8'))['code'] != '10700':
+        print(result)
     # 返回词性标记结果list: ['n', 'v', 'd', 'v', 'b', 'n', 'wp']
     # return ast.literal_eval(result.decode('utf-8'))['data']['pos']
     return ast.literal_eval(result.decode('utf-8'))
@@ -79,6 +85,9 @@ def chinese_ner(content):       # 中文命名实体识别
     req = urllib.request.Request(url_ner, body, x_header)
     result = urllib.request.urlopen(req)
     result = result.read()
+    if ast.literal_eval(result.decode('utf-8'))['code'] != '0' and \
+            ast.literal_eval(result.decode('utf-8'))['code'] != '10700':
+        print(result)
     # 返回NER结果list: ['O', 'O', 'O', 'O', 'O', 'S-Ni', 'O', 'O']
     # return ast.literal_eval(result.decode('utf-8'))['data']['ner']
     return ast.literal_eval(result.decode('utf-8'))
@@ -97,6 +106,9 @@ def dependency_parse(content):       # 依存句法分析
     req = urllib.request.Request(url_dp, body, x_header)
     result = urllib.request.urlopen(req)
     result = result.read()
+    if ast.literal_eval(result.decode('utf-8'))['code'] != '0' and \
+            ast.literal_eval(result.decode('utf-8'))['code'] != '10700':
+        print(result)
     # 返回依存句法分析结果list:
     # [{'parent': 1, 'relate': 'SBV'}, {'parent': 3, 'relate': 'SBV'}, {'parent': 3, 'relate': 'ADV'},
     # {'parent': -1, 'relate': 'HED'}, {'parent': 5, 'relate': 'ATT'}, {'parent': 3, 'relate': 'VOB'},
@@ -118,6 +130,9 @@ def semantic_role_labeller(content):       # 语义角色标注
     req = urllib.request.Request(url_srl, body, x_header)
     result = urllib.request.urlopen(req)
     result = result.read()
+    if ast.literal_eval(result.decode('utf-8'))['code'] != '0' and \
+            ast.literal_eval(result.decode('utf-8'))['code'] != '10700':
+        print(result)
     # 返回语义角色标注结果list: [{'beg': 0, 'end': 1, 'id': 3, 'type': 'A0'}, {'beg': 4, 'end': 5, 'id': 3, 'type': 'A1'}]
     # return ast.literal_eval(result.decode('utf-8'))['data']['srl']
     return ast.literal_eval(result.decode('utf-8'))
@@ -136,6 +151,9 @@ def semantic_dependency_parse(content):       # 语义依存分析
     req = urllib.request.Request(url_sdgp, body, x_header)
     result = urllib.request.urlopen(req)
     result = result.read()
+    if ast.literal_eval(result.decode('utf-8'))['code'] != '0' and \
+            ast.literal_eval(result.decode('utf-8'))['code'] != '10700':
+        print(result)
     # 返回语义依存分析结果list:
     # [{'id': 0, 'parent': 1, 'relate': 'Prod'}, {'id': 1, 'parent': 3, 'relate': 'dPoss'},
     # {'id': 2, 'parent': 3, 'relate': 'mMod'}, {'id': 3, 'parent': -1, 'relate': 'Root'},
@@ -150,6 +168,9 @@ def func_cas(res, func, content, data_param):
     while res['code'] == "10700":
         res = func(content)
         count = count + 1
+        if count > 50:
+            print('retry too many times--', str(func))
+            return None
     # print(count, '---', res['data'][data_param])
     return res['data'][data_param]
 
