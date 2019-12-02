@@ -9,6 +9,7 @@
     <list default="true" id="db885a91-496a-4eb5-8226-be0c9a37fd31" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,25 +18,35 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="444">
+                    <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
+                    <folding>
+                      <element signature="e#37#71#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-              <folding>
-                <element signature="e#37#71#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-100">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="1748">
+              <caret line="88" column="8" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
               <folding>
                 <element signature="e#37#84#0" expanded="true" />
               </folding>
@@ -46,7 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1175">
+            <state relative-caret-position="407">
               <caret line="170" column="21" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="21" />
               <folding>
                 <element signature="e#57#68#0" expanded="true" />
@@ -143,9 +154,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="9" />
-    <option name="y" value="22" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="6" />
+    <option name="y" value="105" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -375,22 +386,23 @@
       <workItem from="1575032372292" duration="3458000" />
       <workItem from="1575077935918" duration="5901000" />
       <workItem from="1575096367034" duration="1876000" />
-      <workItem from="1575179120320" duration="1657000" />
+      <workItem from="1575179120320" duration="6152000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="385967000" />
+    <option name="totallyTimeSpent" value="390462000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49805447" visible="true" weight="0.21321961" />
       <window_info id="Structure" order="1" sideWeight="0.5019455" side_tool="true" weight="0.2707889" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.38195992" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" weight="0.38195992" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.37639198" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -461,7 +473,7 @@
     <SUITE FILE_PATH="coverage/Forestry_LAW$key_words_extract.coverage" NAME="key_words_extract Coverage Results" MODIFIED="1572849657690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_graph" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$mongo_parse.coverage" NAME="mongo_parse Coverage Results" MODIFIED="1570766439019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$save_to_db.coverage" NAME="save_to_db Coverage Results" MODIFIED="1566980936819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$get_content.coverage" NAME="get_content Coverage Results" MODIFIED="1575096171743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$get_content.coverage" NAME="get_content Coverage Results" MODIFIED="1575273525920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$save_to_mongo.coverage" NAME="save_to_mongo Coverage Results" MODIFIED="1566983214795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$aim_and_accord_extract.coverage" NAME="aim_and_accord_extract Coverage Results" MODIFIED="1574070483015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$soil_and_water_conservation_parser.coverage" NAME="soil_and_water_conservation_parser Coverage Results" MODIFIED="1571054738286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
@@ -485,7 +497,7 @@
     <SUITE FILE_PATH="coverage/Forestry_LAW$forest_fire_prevention.coverage" NAME="forest_fire_prevention Coverage Results" MODIFIED="1571055790573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$graphviz_test.coverage" NAME="graphviz_test Coverage Results" MODIFIED="1573187756436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1571288511160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$complex_analysis.coverage" NAME="complex_analysis Coverage Results" MODIFIED="1575180130133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$complex_analysis.coverage" NAME="complex_analysis Coverage Results" MODIFIED="1575273537230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$jieba.coverage" NAME="jieba Coverage Results" MODIFIED="1567584165109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$syntactic_analysis_core.coverage" NAME="syntactic_analysis_core Coverage Results" MODIFIED="1573548918051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$scope_of_application_extraction__1_.coverage" NAME="scope_of_application_extraction (1) Coverage Results" MODIFIED="1574152424351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction" />
@@ -817,8 +829,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        <state relative-caret-position="444">
+          <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
           <folding>
             <element signature="e#37#71#0" expanded="true" />
           </folding>
@@ -827,7 +839,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1175">
+        <state relative-caret-position="407">
           <caret line="170" column="21" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="21" />
           <folding>
             <element signature="e#57#68#0" expanded="true" />
@@ -837,8 +849,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="1748">
+          <caret line="88" column="8" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
           <folding>
             <element signature="e#37#84#0" expanded="true" />
           </folding>

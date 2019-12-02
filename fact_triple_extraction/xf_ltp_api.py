@@ -168,7 +168,7 @@ def func_cas(res, func, content, data_param):
     while res['code'] == "10700":
         res = func(content)
         count = count + 1
-        if count > 50:
+        if count > 30:
             print('retry too many times--', str(func))
             return None
     # print(count, '---', res['data'][data_param])
