@@ -37,7 +37,10 @@ def xunfei_complex_analysis_and_save(contents):
                             parent_word = words_list[parent_index]
                         child_index = index
                         child_word = words_list[child_index]
-                        reletion_name = dp_tags[dp_info[index]['relate']] + '-' + dp_info[index]['relate']
+                        if dp_info[index]['relate'] in dp_tags:
+                            reletion_name = dp_tags[dp_info[index]['relate']] + '-' + dp_info[index]['relate']
+                        else:
+                            reletion_name = dp_info[index]['relate'] + '-' + dp_info[index]['relate']
                         # TODO: 存入对应数据库操作
                         dp_result = [law_id,                    # 0-法律id
                                      article_class,             # 1-文章类型（1或2）
@@ -51,39 +54,41 @@ def xunfei_complex_analysis_and_save(contents):
                         save_to_dependency_parsing_result(dp_result)
                         print("%s -----(%s)---- %s" % (parent_word, reletion_name, child_word))
 
-                    # print('-------------------------语义依存分析结果打印----------------------------')
-                    # for sdp_index in range(len(sdgp_info)):
-                    #     sdp_parent_index = sdgp_info[sdp_index]['parent']
-                    #     if sdp_parent_index == -1:
-                    #         sdp_parent_word = 'Root'
-                    #     else:
-                    #         sdp_parent_word = words_list[sdp_parent_index]
-                    #     sdp_child_index = sdgp_info[sdp_index]['id']
-                    #     sdp_child_word = words_list[sdp_child_index]
-                    #     if sdgp_info[sdp_index]['relate'] in sdp_tags:
-                    #         semantic_dp_name = sdp_tags[sdgp_info[sdp_index]['relate']] + '-' + sdgp_info[index]['relate']
-                    #     elif str(sdgp_info[sdp_index]['relate']).startswith('r'):
-                    #         main_relate = '' + str(sdgp_info[sdp_index]['relate'])[1:]
-                    #         semantic_dp_name = sdp_tags[main_relate] + '--反角色' + '-' + sdgp_info[index]['relate']
-                    #     elif str(sdgp_info[sdp_index]['relate']).startswith('d'):
-                    #         main_relate = '' + str(sdgp_info[sdp_index]['relate'])[1:]
-                    #         semantic_dp_name = sdp_tags[main_relate] + '--嵌套角色' + '-' + sdgp_info[index]['relate']
-                    #     else:
-                    #         semantic_dp_name = sdgp_info[sdp_index]['relate'] + '-' + sdgp_info[index]['relate']
-                    #     # TODO: 将语义依存分析结果存入数据库
-                    #     sdp_result = [law_id,
-                    #                   article_class,
-                    #                   chapter_id,
-                    #                   sentence_id,
-                    #                   "".join(content_list),
-                    #                   content,
-                    #                   sdp_parent_word,
-                    #                   semantic_dp_name,
-                    #                   sdp_child_word]
-                    #     save_to_semantic_dependency_result(sdp_result)
-                    #     print("%s(%s)-----%s-----%s(%s)" % (
-                    #         sdp_parent_word, postags_list[sdp_parent_index], semantic_dp_name, sdp_child_word,
-                    #         postags_list[sdp_child_index]))
+                    print('-------------------------语义依存分析结果打印----------------------------')
+                    for sdp_index in range(len(sdgp_info)):
+                        sdp_parent_index = sdgp_info[sdp_index]['parent']
+                        if sdp_parent_index == -1:
+                            sdp_parent_word = 'Root'
+                        else:
+                            sdp_parent_word = words_list[sdp_parent_index]
+                        sdp_child_index = sdgp_info[sdp_index]['id']
+                        sdp_child_word = words_list[sdp_child_index]
+                        if sdgp_info[sdp_index]['relate'] in sdp_tags:
+                            semantic_dp_name = sdp_tags[sdgp_info[sdp_index]['relate']] + '-' + sdgp_info[index]['relate']
+                        elif str(sdgp_info[sdp_index]['relate']).startswith('r') \
+                                and str(sdgp_info[sdp_index]['relate'])[1:] in sdp_tags:
+                            main_relate = '' + str(sdgp_info[sdp_index]['relate'])[1:]
+                            semantic_dp_name = sdp_tags[main_relate] + '--反角色' + '-' + sdgp_info[index]['relate']
+                        elif str(sdgp_info[sdp_index]['relate']).startswith('d') \
+                                and str(sdgp_info[sdp_index]['relate'])[1:] in sdp_tags:
+                            main_relate = '' + str(sdgp_info[sdp_index]['relate'])[1:]
+                            semantic_dp_name = sdp_tags[main_relate] + '--嵌套角色' + '-' + sdgp_info[index]['relate']
+                        else:
+                            semantic_dp_name = sdgp_info[sdp_index]['relate'] + '-' + sdgp_info[index]['relate']
+                        # TODO: 将语义依存分析结果存入数据库
+                        sdp_result = [law_id,
+                                      article_class,
+                                      chapter_id,
+                                      sentence_id,
+                                      "".join(content_list),
+                                      content,
+                                      sdp_parent_word,
+                                      semantic_dp_name,
+                                      sdp_child_word]
+                        save_to_semantic_dependency_result(sdp_result)
+                        print("%s(%s)-----%s-----%s(%s)" % (
+                            sdp_parent_word, postags_list[sdp_parent_index], semantic_dp_name, sdp_child_word,
+                            postags_list[sdp_child_index]))
 
                     print('-------------------------语义角色标注结果打印----------------------------')
                     role_lable_dict = dict()
