@@ -1,1 +1,7 @@
 /venv
+
+### IntelliJ Pycharm ###
+.idea
+*.iws
+*.iml
+*.ipr
