@@ -6,11 +6,7 @@
     <bookmark url="file://$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction/aim_and_accord_extract.py" line="145" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db885a91-496a-4eb5-8226-be0c9a37fd31" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py" afterDir="false" />
-    </list>
+    <list default="true" id="db885a91-496a-4eb5-8226-be0c9a37fd31" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="72" column="32" selection-start-line="72" selection-start-column="32" selection-end-line="72" selection-end-column="32" />
+            <state relative-caret-position="325">
+              <caret line="158" column="22" selection-start-line="158" selection-start-column="22" selection-end-line="158" selection-end-column="22" />
               <folding>
                 <element signature="e#37#84#0" expanded="true" />
               </folding>
@@ -32,22 +28,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="31" column="57" lean-forward="true" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
-              <folding>
-                <element signature="e#37#71#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="282" column="25" lean-forward="true" selection-start-line="282" selection-start-column="25" selection-end-line="282" selection-end-column="25" />
+            <state relative-caret-position="414">
+              <caret line="221" column="24" lean-forward="true" selection-start-line="221" selection-start-column="24" selection-end-line="221" selection-end-column="24" />
               <folding>
                 <element signature="e#57#68#0" expanded="true" />
               </folding>
@@ -166,22 +150,6 @@
               <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
               <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
               <item name="fact_triple_extraction" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
-              <item name="fact_triple_extraction" type="462c0819:PsiDirectoryNode" />
-              <item name="complex_content_extraction" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
-              <item name="sentences" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forestry_LAW" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forestry_LAW" type="462c0819:PsiDirectoryNode" />
-              <item name="syntactic_analysis" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -381,12 +349,12 @@
       <workItem from="1575077935918" duration="5901000" />
       <workItem from="1575096367034" duration="1876000" />
       <workItem from="1575179120320" duration="20303000" />
-      <workItem from="1575421353516" duration="4578000" />
+      <workItem from="1575421353516" duration="16942000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="409191000" />
+    <option name="totallyTimeSpent" value="421555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -405,7 +373,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32850778" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50319827" side_tool="true" weight="0.38195992" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49798927" weight="0.32480535" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49798927" weight="0.32405347" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -482,7 +450,7 @@
     <SUITE FILE_PATH="coverage/Forestry_LAW$forest_fire_prevention.coverage" NAME="forest_fire_prevention Coverage Results" MODIFIED="1571055790573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$graphviz_test.coverage" NAME="graphviz_test Coverage Results" MODIFIED="1573187756436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1571288511160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$complex_analysis.coverage" NAME="complex_analysis Coverage Results" MODIFIED="1575463599926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$complex_analysis.coverage" NAME="complex_analysis Coverage Results" MODIFIED="1575463794516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$jieba.coverage" NAME="jieba Coverage Results" MODIFIED="1567584165109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$syntactic_analysis_core.coverage" NAME="syntactic_analysis_core Coverage Results" MODIFIED="1573548918051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/syntactic_analysis" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$scope_of_application_extraction__1_.coverage" NAME="scope_of_application_extraction (1) Coverage Results" MODIFIED="1574152424351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction" />
@@ -541,27 +509,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntactic_analysis/sentence_extract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="166" column="118" selection-start-line="166" selection-start-column="118" selection-end-line="166" selection-end-column="118" />
-          <folding>
-            <element signature="e#15#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -572,16 +523,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/knowledge_graph/basic_kg_process/key_words_extract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="138" selection-start-line="138" selection-end-line="138" />
-          <folding>
-            <element signature="e#56#65#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -617,34 +558,10 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Desktop/test/aim_and_accord_new.txt" />
-    <entry file="file://$PROJECT_DIR$/baidu/WebLtp_python3_demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="39" column="19" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
-          <folding>
-            <element signature="e#42#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/triple_extraction_example/fact_triple_extraction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="219" column="71" lean-forward="true" selection-start-line="219" selection-start-column="4" selection-end-line="219" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/responsible_to_explain.py" />
-    <entry file="file://$PROJECT_DIR$/data/classify.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/property_collect.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-749">
@@ -700,20 +617,6 @@
           <folding>
             <element signature="e#41#72#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baidu/baidu_parse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/scope_of_application_extraction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -774,26 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/triple_extraction_example/law_extraction_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding>
-            <element signature="e#37#67#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xunfei_graphviz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1525">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#67#95#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/response_to_explain/responsible_to_explain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
@@ -818,6 +701,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/triple_extraction_example/law_extraction_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding>
+            <element signature="e#37#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/get_content.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -828,10 +721,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/triple_extraction_example/fact_triple_extraction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4664">
+          <caret line="219" column="71" lean-forward="true" selection-start-line="219" selection-start-column="4" selection-end-line="219" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/scope_of_application_extraction/scope_of_application_extraction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2793">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/classify.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-111">
+          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/baidu/WebLtp_python3_demo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="39" column="19" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+          <folding>
+            <element signature="e#42#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/knowledge_graph/basic_kg_process/key_words_extract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3450">
+          <caret line="138" selection-start-line="138" selection-end-line="138" />
+          <folding>
+            <element signature="e#56#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/baidu/baidu_parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/syntactic_analysis/sentence_extract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4150">
+          <caret line="166" column="118" selection-start-line="166" selection-start-column="118" selection-end-line="166" selection-end-column="118" />
+          <folding>
+            <element signature="e#15#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xunfei_graphviz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#67#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/xf_ltp_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="282" column="25" lean-forward="true" selection-start-line="282" selection-start-column="25" selection-end-line="282" selection-end-column="25" />
+        <state relative-caret-position="414">
+          <caret line="221" column="24" lean-forward="true" selection-start-line="221" selection-start-column="24" selection-end-line="221" selection-end-column="24" />
           <folding>
             <element signature="e#57#68#0" expanded="true" />
           </folding>
@@ -840,8 +808,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="72" column="32" selection-start-line="72" selection-start-column="32" selection-end-line="72" selection-end-column="32" />
+        <state relative-caret-position="325">
+          <caret line="158" column="22" selection-start-line="158" selection-start-column="22" selection-end-line="158" selection-end-column="22" />
           <folding>
             <element signature="e#37#84#0" expanded="true" />
           </folding>
