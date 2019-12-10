@@ -29,7 +29,7 @@ def get_article_1_mapping(article_id, article_chapter_dict, chapter_law_dict):
 
 
 def get_article_1_complex_content(article_chapter_dict, chapter_law_dict):
-    select_sql = '''select * from article_1_sentence where is_single = 0'''
+    select_sql = '''select * from article_1_sentence where is_single = 0 and id > 36450'''
     cursor = conn.cursor()
     cursor.execute(select_sql)
     complex_contents = cursor.fetchall()
