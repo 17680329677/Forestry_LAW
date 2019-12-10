@@ -56,8 +56,12 @@ def xunfei_nlp_sdp_parser(content):
     for i in range(len(sdgp_info)):
         child_index = sdgp_info[i]['id'] + 1
         parent_index = sdgp_info[i]['parent'] + 1
+        if sdgp_info[i]['relate'] in sdp_tags:
+            label = sdp_tags[sdgp_info[i]['relate']]
+        else:
+            label = sdgp_info[i]['relate']
         dot.edge('N' + str(parent_index), 'N' + str(child_index),
-                 label=sdp_tags[sdgp_info[i]['relate']], fontname="Microsoft YaHei")
+                 label=label, fontname="Microsoft YaHei")
     dot.view()
 
 
@@ -82,7 +86,7 @@ def xunfei_nlp_srl_parser(content):
     #         print("".join(words_list[srl['beg']: srl['end'] + 1]), srl['type'], '\t', end="")
     #     print()
     # print(content, '--------------------PARSE SUCCESS')
-    return srl_dict_by_verb
+    return words_list, srl_dict_by_verb
 
 
 if __name__ == '__main__':
