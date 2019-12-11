@@ -6,10 +6,7 @@
     <bookmark url="file://$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction/aim_and_accord_extract.py" line="145" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db885a91-496a-4eb5-8226-be0c9a37fd31" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_extrate.py" beforeDir="false" afterPath="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_extrate.py" afterDir="false" />
-    </list>
+    <list default="true" id="db885a91-496a-4eb5-8226-be0c9a37fd31" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_extrate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="166" column="59" selection-start-line="166" selection-start-column="59" selection-end-line="166" selection-end-column="59" />
+            <state relative-caret-position="4200">
+              <caret line="168" column="32" lean-forward="true" selection-start-line="168" selection-start-column="32" selection-end-line="168" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -374,18 +371,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="414834000" />
+    <option name="totallyTimeSpent" value="415236000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49805447" visible="true" weight="0.25268096" />
       <window_info id="Structure" order="1" sideWeight="0.5019455" side_tool="true" weight="0.2707889" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49731904" visible="true" weight="0.28895184" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49731904" weight="0.28895184" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.55382437" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -394,7 +390,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50268096" side_tool="true" weight="0.38243628" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49798927" weight="0.32577905" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49798927" visible="true" weight="0.32577905" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -449,7 +445,7 @@
     <SUITE FILE_PATH="coverage/Forestry_LAW$key_words_extract.coverage" NAME="key_words_extract Coverage Results" MODIFIED="1572849657690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_graph" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$save_to_db.coverage" NAME="save_to_db Coverage Results" MODIFIED="1566980936819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$xf_ltp_test.coverage" NAME="xf_ltp_test Coverage Results" MODIFIED="1574158930764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/aim_and_accord_extraction" />
-    <SUITE FILE_PATH="coverage/Forestry_LAW$complex_extrate.coverage" NAME="complex_extrate Coverage Results" MODIFIED="1576068423387" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction" />
+    <SUITE FILE_PATH="coverage/Forestry_LAW$complex_extrate.coverage" NAME="complex_extrate Coverage Results" MODIFIED="1576069125364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$content_level_parser.coverage" NAME="content_level_parser Coverage Results" MODIFIED="1571144725780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sentences/level_parser" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$responsible_to_explain.coverage" NAME="responsible_to_explain Coverage Results" MODIFIED="1574327704043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fact_triple_extraction" />
     <SUITE FILE_PATH="coverage/Forestry_LAW$law_process.coverage" NAME="law_process Coverage Results" MODIFIED="1572869447211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_graph" />
@@ -837,8 +833,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fact_triple_extraction/complex_content_extraction/complex_extrate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="166" column="59" selection-start-line="166" selection-start-column="59" selection-end-line="166" selection-end-column="59" />
+        <state relative-caret-position="4200">
+          <caret line="168" column="32" lean-forward="true" selection-start-line="168" selection-start-column="32" selection-end-line="168" selection-end-column="32" />
         </state>
       </provider>
     </entry>
