@@ -10,19 +10,20 @@ import hashlib
 import base64
 import ast
 from data_resource import conn
+from time_control_using_thread.timeout_control import *
 
 # 中文分词接口地址-cws
-url_cws = "http://ltpapi.xfyun.cn/v1/cws"
+url_cws = "https://ltpapi.xfyun.cn/v1/cws"
 # 词性标注接口地址-pos
-url_pos = "http://ltpapi.xfyun.cn/v1/pos"
+url_pos = "https://ltpapi.xfyun.cn/v1/pos"
 # 命名实体识别接口地址-ner
-url_ner = "http://ltpapi.xfyun.cn/v1/ner"
+url_ner = "https://ltpapi.xfyun.cn/v1/ner"
 # 依存句法分析接口地址-dp
-url_dp = "http://ltpapi.xfyun.cn/v1/dp"
+url_dp = "https://ltpapi.xfyun.cn/v1/dp"
 # 语义角色标注接口地址-srl
-url_srl = "http://ltpapi.xfyun.cn/v1/srl"
+url_srl = "https://ltpapi.xfyun.cn/v1/srl"
 # 语义依存分析接口地址-sdgp
-url_sdgp = "http://ltpapi.xfyun.cn/v1/sdgp"
+url_sdgp = "https://ltpapi.xfyun.cn/v1/sdgp"
 # 开放平台应用ID
 x_appid = "5dcb67fc"
 # 开放平台应用接口秘钥
@@ -31,6 +32,7 @@ api_key = "ae692f6e6934e1cdeb788e7854181443"
 TEXT = "为了促进绿化事业的发展，改善城市生态环境，根据国务院《城市绿化条例》以及有关法律、行政法规，结合本市实际，制定本条例。"
 
 
+@limit_decor(6)
 def word_segment(content):      # 分词
     body = urllib.parse.urlencode({'text': content}).encode('utf-8')
     param = {"type": "dependent"}
@@ -59,6 +61,7 @@ def word_segment(content):      # 分词
         return word_segment(content)
 
 
+@limit_decor(6)
 def word_postag(content):   # 词性标记
     body = urllib.parse.urlencode({'text': content}).encode('utf-8')
     param = {"type": "dependent"}
@@ -87,6 +90,7 @@ def word_postag(content):   # 词性标记
         return word_postag(content)
 
 
+@limit_decor(6)
 def chinese_ner(content):       # 中文命名实体识别
     body = urllib.parse.urlencode({'text': content}).encode('utf-8')
     param = {"type": "dependent"}
@@ -115,6 +119,7 @@ def chinese_ner(content):       # 中文命名实体识别
         return chinese_ner(content)
 
 
+@limit_decor(6)
 def dependency_parse(content):       # 依存句法分析
     body = urllib.parse.urlencode({'text': content}).encode('utf-8')
     param = {"type": "dependent"}
@@ -146,6 +151,7 @@ def dependency_parse(content):       # 依存句法分析
         return dependency_parse(content)
 
 
+@limit_decor(6)
 def semantic_role_labeller(content):       # 语义角色标注
     body = urllib.parse.urlencode({'text': content}).encode('utf-8')
     param = {"type": "dependent"}
@@ -174,6 +180,7 @@ def semantic_role_labeller(content):       # 语义角色标注
         return semantic_role_labeller(content)
 
 
+@limit_decor(6)
 def semantic_dependency_parse(content):       # 语义依存分析
     body = urllib.parse.urlencode({'text': content}).encode('utf-8')
     param = {"type": "dependent"}
@@ -217,6 +224,16 @@ def func_cas(res, func, content, data_param):
             return None
     # print(count, '---', res['data'][data_param])
     return res['data'][data_param]
+
+
+# 结合func_cas以及利用了线程的执行时间限制方法，对执行时间进行控制
+def time_control_method(func, content, data_param):
+    res = time_limit_method(func, content)
+    if res == '请求超时':
+        print(str(func), '--', res)
+        return time_control_method(func, content, data_param)
+    else:
+        return func_cas(res, func, content, data_param)
 
 
 def content_nlp(output_file, content, dp_tags, sdp_tags):
