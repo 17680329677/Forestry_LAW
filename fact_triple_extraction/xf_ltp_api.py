@@ -215,24 +215,23 @@ def semantic_dependency_parse(content):       # 语义依存分析
 
 def func_cas(res, func, content, data_param):
     count = 1
-    if not isinstance(res, dict) or 'code' not in res:
-        print('res wrong!')
-        return None
-    while isinstance(res, dict) and 'code' in res and res['code'] == "10700":
+    print('res--', res)
+    while (isinstance(res, dict) and 'code' in res and res['code'] == "10700") or res == '请求超时':
         res = func(content)
+        print('while--', res)
         time.sleep(0.5)     # 每请求一次睡眠0.5秒
         count = count + 1
         if count > 30:
             print('retry too many times--', str(func))
             return None
     # print(count, '---', res['data'][data_param])
+    print('fin--', res)
     return res['data'][data_param]
 
 
 # 结合func_cas以及利用了线程的执行时间限制方法，对执行时间进行控制
 def time_control_method(func, content, data_param):
     res = time_limit_method(func, content)
-    print(type(res), res)
     if res == '请求超时':
         print(str(func), '--', res)
         return time_control_method(func, content, data_param)
