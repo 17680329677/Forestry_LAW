@@ -7,7 +7,7 @@ from fact_triple_extraction.complex_content_extraction.get_content import *
 def xunfei_complex_analysis_and_save(contents):
     dp_tags, sdp_tags = get_tags()
     output_file = "C:\\Users\\dhz1216\\Desktop\\test\\complex_content\\test-2.txt"
-    output_file = "C:\\Users\\dhz\\Desktop\\test\\test.txt"
+    # output_file = "C:\\Users\\dhz\\Desktop\\test\\test.txt"
     for content_tuple in contents:
         law_id = content_tuple[0]
         article_class = content_tuple[1]
