@@ -188,6 +188,7 @@ def save_to_semantic_role_label_result(result):
 
 
 if __name__ == '__main__':
-    article_chapter_dict, chapter_law_dict = get_article_1_map_dict()
-    content_list = get_article_1_complex_content(article_chapter_dict, chapter_law_dict)
-    xunfei_complex_analysis_and_save(content_list)
+    # article_chapter_dict, chapter_law_dict = get_article_1_map_dict()
+    # content_list = get_article_1_complex_content(article_chapter_dict, chapter_law_dict)
+    article_2_complex_content_list = get_article_2_complex_content()
+    xunfei_complex_analysis_and_save(article_2_complex_content_list)
