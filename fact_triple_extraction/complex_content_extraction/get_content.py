@@ -48,7 +48,7 @@ def get_article_1_complex_content(article_chapter_dict, chapter_law_dict):
             if '：' in content and len(content) > 6:
                 is_valid = True
         if is_valid:
-            result.append(tuple((law_id, 1, chapter_id, sentence_id, temp_list)))
+            result.append(tuple((law_id, 1, chapter_id, sentence_id, temp_list, 1)))
     return result
 
 
@@ -89,7 +89,7 @@ def get_article_2_complex_content():
             if '：' in content and len(content) > 6:
                 is_valid = True
         if is_valid:
-            result.append(tuple((law_id, 2, -1, sentence_id, temp_list)))
+            result.append(tuple((law_id, 2, -1, sentence_id, temp_list, 1)))
     return result
 
 

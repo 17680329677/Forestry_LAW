@@ -14,6 +14,7 @@ def xunfei_complex_analysis_and_save(contents):
         chapter_id = content_tuple[2]
         sentence_id = content_tuple[3]
         content_list = content_tuple[4]
+        is_complex = content_tuple[5]
         for content in content_list:
             if '：' in content:
                 words_list = time_control_method(word_segment, content, 'word')  # 分词结果
@@ -51,7 +52,8 @@ def xunfei_complex_analysis_and_save(contents):
                                      content,                   # 分析子句
                                      parent_word,               # 头词
                                      reletion_name,             # 关系
-                                     child_word]                # 尾词
+                                     child_word,                # 尾词
+                                     is_complex]                # 是否是复杂句
                         save_to_dependency_parsing_result(dp_result)
                         print("%s -----(%s)---- %s" % (parent_word, reletion_name, child_word))
 
@@ -85,7 +87,8 @@ def xunfei_complex_analysis_and_save(contents):
                                       content,
                                       sdp_parent_word,
                                       semantic_dp_name,
-                                      sdp_child_word]
+                                      sdp_child_word,
+                                      is_complex]       # 是否是复杂句
                         save_to_semantic_dependency_result(sdp_result)
                         print("%s(%s)-----%s-----%s(%s)" % (
                             sdp_parent_word, postags_list[sdp_parent_index], semantic_dp_name, sdp_child_word,
@@ -112,14 +115,16 @@ def xunfei_complex_analysis_and_save(contents):
                                          sentence_id,
                                          "".join(content_list),
                                          content,
-                                         role_lable_dict]
+                                         role_lable_dict,
+                                         is_complex]                # 是否是复杂句
                     save_to_semantic_role_label_result(role_label_result)
                     print('=========================================================================================')
 
 
 def save_to_dependency_parsing_result(result):
     insert_sql = '''insert into dependency_parsing_result (law_id, class, chapter_id, sentence_id, complete_sentence, 
-    parse_sentence, front_word, dependency_parsing_relation, tail_word) value (%s, %s, %s, %s, %s, %s, %s, %s, %s)'''
+                    parse_sentence, front_word, dependency_parsing_relation, tail_word, is_complex) 
+                    value (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
     cursor = conn.cursor()
     law_id = result[0]
     article_class = result[1]
@@ -130,9 +135,10 @@ def save_to_dependency_parsing_result(result):
     front_word = result[6]
     dependency_parsing_relation = result[7]
     tail_word = result[8]
+    is_complex = result[9]
     try:
         cursor.execute(insert_sql, (law_id, article_class, chapter_id, sentence_id, complete_sentence,
-                                    parse_sentence, front_word, dependency_parsing_relation, tail_word))
+                                    parse_sentence, front_word, dependency_parsing_relation, tail_word, is_complex))
         conn.commit()
         print(sentence_id, parse_sentence, '----DEPENDENCY PARSING SUCCESS----')
     except Exception as e:
@@ -142,7 +148,8 @@ def save_to_dependency_parsing_result(result):
 
 def save_to_semantic_dependency_result(result):
     insert_sql = '''insert into semantic_dependency_result (law_id, class, chapter_id, sentence_id, complete_sentence, 
-    parse_sentence, front_word, semantic_dependency_relation, tail_word) value (%s, %s, %s, %s, %s, %s, %s, %s, %s)'''
+                    parse_sentence, front_word, semantic_dependency_relation, tail_word, is_complex) 
+                    value (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
     cursor = conn.cursor()
     law_id = result[0]
     article_class = result[1]
@@ -153,9 +160,10 @@ def save_to_semantic_dependency_result(result):
     front_word = result[6]
     semantic_dependency_relation = result[7]
     tail_word = result[8]
+    is_complex = result[9]
     try:
         cursor.execute(insert_sql, (law_id, article_class, chapter_id, sentence_id, complete_sentence,
-                                    parse_sentence, front_word, semantic_dependency_relation, tail_word))
+                                    parse_sentence, front_word, semantic_dependency_relation, tail_word, is_complex))
         conn.commit()
         print(sentence_id, parse_sentence, '----SEMANTIC DEPENDENCY PARSING SUCCESS----')
     except Exception as e:
@@ -166,7 +174,8 @@ def save_to_semantic_dependency_result(result):
 
 def save_to_semantic_role_label_result(result):
     insert_sql = '''insert into semantic_role_label_result (law_id, class, chapter_id, sentence_id, 
-    complete_sentence, parse_sentence, verb, role_label, content) value (%s, %s, %s, %s, %s, %s, %s, %s, %s)'''
+                    complete_sentence, parse_sentence, verb, role_label, content, is_complex) 
+                    value (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
     cursor = conn.cursor()
     law_id = result[0]
     article_class = result[1]
@@ -175,12 +184,13 @@ def save_to_semantic_role_label_result(result):
     complete_sentence = result[4]
     parse_sentence = result[5]
     role_label_dict = result[6]
+    is_complex = result[7]
     for verb in role_label_dict:
         for role_info in role_label_dict[verb]:
             role = role_info[0]
             content = role_info[1]
             try:
-                cursor.execute(insert_sql, (law_id, article_class, chapter_id, sentence_id, complete_sentence, parse_sentence, verb, role, content))
+                cursor.execute(insert_sql, (law_id, article_class, chapter_id, sentence_id, complete_sentence, parse_sentence, verb, role, content, is_complex))
                 conn.commit()
                 print(sentence_id, parse_sentence, '----SEMANTIC ROLE LABELLING SUCCESS----')
             except Exception as e:
