@@ -71,7 +71,6 @@ def complex_extraction():
     for parse_sentence in parse_sentences:
         complete_sentence = parse_sentence[0]
         parsing_sentence = parse_sentence[1]
-        print(parsing_sentence)
         cursor.execute(SELECT_DP_SQL, (parse_sentence[1], parse_sentence[2], parse_sentence[3]))
         dp_results = cursor.fetchall()
         cursor.execute(SELECT_SDP_SQL, (parse_sentence[1], parse_sentence[2], parse_sentence[3]))
@@ -93,6 +92,7 @@ def complex_extraction_core(dp_results, sdp_results, srl_results, complete_sente
     for dp_res in dp_results:
         if dp_res[7] == 'Root':
             core_verb = dp_res[9]
+            break
     for dp_res in dp_results:
         if dp_res[8] == '并列关系-COO' and (core_verb == dp_res[7] or core_verb == dp_res[9]):
             if core_verb == dp_res[7]:
@@ -109,21 +109,29 @@ def complex_extraction_core(dp_results, sdp_results, srl_results, complete_sente
         # TODO: 找不到主谓关系，也就是没有核心主语，此时如何处理待决定
         pass
     # 3. 结合dp 和 srl结果进行关系抽取
-    core_srl_list = srl_results[core_verb]
     # 3.1 抽取核心动词标注的语义角色对应的关系
-    core_srl_dict = srl_info_extract(core_srl_list)
-    print(core_comprehensive_analysis(core_verb, core_srl_dict, complete_sentence, parsing_sentence, core_subject))
+    if core_verb in srl_results:
+        core_srl_list = srl_results[core_verb]
+        core_srl_dict = srl_info_extract(core_srl_list)
+        print(parsing_sentence, '（核心主语：', core_subject, '）')
+        print(core_comprehensive_analysis(core_verb, core_srl_dict, complete_sentence, parsing_sentence, core_subject))
+    # 3.2 核心动词没有对应的语义角色 或者 与核心动词并列的动词列表不为空时，分析并列动词的语义角色关系
+    # TODO: 核心动词没有对应的语义角色时，如何分析
+    if coo_verb_list is not None and len(coo_verb_list):
+        print(coo_verb_list)
 
 
 def subject_complete(subject, dp_results):          # 利用定中关系，使用递归调用将主语补全
     last_word = subject
-    for dp_res in dp_results:
-        if dp_res[8] == '定中关系-ATT' and last_word == dp_res[7]:
-            subject = dp_res[9] + subject
-            subject_complete(subject, dp_results)
-        elif dp_res[7] == last_word and dp_res[8] == '主谓关系-SBV':
-            subject = dp_res[9] + subject
-            subject_complete(subject, dp_results)
+    index = len(dp_results) - 1
+    while index >= 0:
+        if dp_results[index][8] == '定中关系-ATT' and last_word == dp_results[index][7]:
+            subject = dp_results[index][9] + subject
+            if index - 1 >= 0 and dp_results[index - 1][8] == '定中关系-ATT' and dp_results[index][9] == dp_results[index - 1][7]:
+                last_word = dp_results[index][9]
+        elif dp_results[index][7] == last_word and dp_results[index][8] == '主谓关系-SBV':
+            subject = dp_results[index][9] + subject
+        index = index - 1
     return subject
 
 
@@ -140,6 +148,7 @@ def srl_info_extract(srl_info_list):        # 整理语义角色标注结果，�
     return srl_info_dict
 
 
+# 核心动词语义角色标注关系分析
 def core_comprehensive_analysis(verb, srl_info_dict, complete_sentence, parsing_sentence, core_subject):
     relation_list = []
     # 1. 有A0, A1, MNR
@@ -156,23 +165,46 @@ def core_comprehensive_analysis(verb, srl_info_dict, complete_sentence, parsing_
         subject = srl_info_dict['A0'][0]
         relation = verb
         object = srl_info_dict['A1'][0]
-        relation_list.append(subject + '--' + relation + '--' + object)
+        if is_contain_sentence(object):
+            relation_list.append(subject + '--' + relation + object + '--' + '根据章节条款信息补全list')
+        else:
+            relation_list.append(subject + '--' + relation + '--' + object)
     # 3. 有A0，有MNR，无A1和其他
     elif 'A0' in srl_info_dict and 'MNR' in srl_info_dict and 'A1' not in srl_info_dict:
         subject = srl_info_dict['A0'][0]
         mnr = srl_info_dict['MNR'][0]
         if is_contain_sentence(mnr):
             beg_index = str(parsing_sentence).index(mnr)
-            object = parsing_sentence[beg_index + len(mnr):]
+            object = parsing_sentence[beg_index + len(mnr):].replace("：", "")
             if verb == object:      # 如果提取出的宾语（尾实体）就是当前动词本身，将MNR和宾语合起来作为关系
-                relation_list.append(object + '--' + mnr + object + '-- ' + '根据章节条款信息补全list')
+                relation_list.append(subject + '--' + mnr + object + '-- ' + '根据章节条款信息补全list')
             elif verb in object:
                 relation_list.append(subject + '--' + verb + '-- ' + str(object).replace(verb, ""))
                 relation_list.append(object + '--' + mnr + '-- ' + '根据章节条款信息补全list')
-    # 4. 只有'MNR'
-    elif 'A0' not in srl_info_dict and 'A1' not in srl_info_dict and 'MNR' in srl_info_dict :
-        pass
+    # 4. 没有A0，有MNR，有A1
+    elif 'A0' not in srl_info_dict and 'MNR' in srl_info_dict and 'A1' in srl_info_dict:
+        if srl_info_dict['A1'][0] == core_subject:
+            relation_list.append(core_subject + '--' + srl_info_dict['MNR'][0] + verb + '--' + '根据章节条款信息补全list')
+        elif is_contain_sentence(srl_info_dict['A1'][0]):
+            relation_list.append(srl_info_dict['A1'][0] + '--' + verb + '--' + '根据章节条款信息补全list')
+    # 5. 只有'A0'
+    elif 'A0' in srl_info_dict and 'A1' not in srl_info_dict and 'MNR' not in srl_info_dict:
+        if srl_info_dict['A0'][0] == core_subject:
+            relation_list.append(core_subject + '--' + verb + '--' + '根据章节条款信息补全list')
+    # 6. 只有'A1'
+    elif 'A0' not in srl_info_dict and 'A1' in srl_info_dict and 'MNR' not in srl_info_dict:
+        if core_subject is None or core_subject == '':
+            relation_list.append(srl_info_dict['A1'][0] + '--' + verb + '--' + '根据章节条款信息补全list')
+    # 7. 只有'MNR'
+    elif 'A0' not in srl_info_dict and 'A1' not in srl_info_dict and 'MNR' in srl_info_dict:
+        if core_subject is not None and core_subject != '':
+            relation_list.append(core_subject + '--' + verb + '方式(依据)' + '--' + srl_info_dict['MNR'][0])
     return relation_list
+
+
+# 并列动词语义角色关系分析
+def coo_comprehensive_analysis(relation_list, core_subject, coo_verb, srl_info_dict, parsing_sentence):
+    pass
 
 
 def is_contain_sentence(content):
