@@ -220,7 +220,7 @@ def func_cas(res, func, content, data_param):
         res = func(content)
         print('while--', res)
         count = count + 1
-        if count > 30 or (res['code'] != "10700" and res['code'] != "0"):
+        if count > 30 or (isinstance(res, dict) and 'code' in res and res['code'] != "10700" and res['code'] != "0"):
             print('retry too many times--', str(func))
             return None
     # print(count, '---', res['data'][data_param])
