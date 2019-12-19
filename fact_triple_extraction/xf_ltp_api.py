@@ -219,9 +219,8 @@ def func_cas(res, func, content, data_param):
     while (isinstance(res, dict) and 'code' in res and res['code'] == "10700") or res == '请求超时':
         res = func(content)
         print('while--', res)
-        time.sleep(0.5)     # 每请求一次睡眠0.5秒
         count = count + 1
-        if count > 30:
+        if count > 30 or (res['code'] != "10700" and res['code'] != "0"):
             print('retry too many times--', str(func))
             return None
     # print(count, '---', res['data'][data_param])

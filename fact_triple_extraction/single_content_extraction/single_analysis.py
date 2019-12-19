@@ -14,16 +14,12 @@ def xunfei_complex_analysis_and_save(contents):
         content_list = content_tuple[4]
         is_complex = content_tuple[5]
         for content in content_list:
-            if '：' not in content:
+            if '：' not in content and len(content) < 100:
                 words_list = time_control_method(word_segment, content, 'word')  # 分词结果
-                time.sleep(0.5)
                 postags_list = time_control_method(word_postag, content, 'pos')  # 词性标注结果
-                time.sleep(0.5)
                 dp_info = time_control_method(dependency_parse, content, 'dp')  # 依存句法分析
-                time.sleep(0.5)
                 # # [{'beg': 0, 'end': 1, 'id': 3, 'type': 'A0'}, {'beg': 4, 'end': 5, 'id': 3, 'type': 'A1'}]
                 srl_info = time_control_method(semantic_role_labeller, content, 'srl')  # 语义角色标注分析
-                time.sleep(0.5)
                 sdgp_info = time_control_method(semantic_dependency_parse, content, 'sdgp')  # 语义依存分析
                 if words_list is None or postags_list is None or dp_info is None or srl_info is None or sdgp_info is None:
                     continue

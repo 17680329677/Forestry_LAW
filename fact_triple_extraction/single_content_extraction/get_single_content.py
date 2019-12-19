@@ -6,7 +6,7 @@ from fact_triple_extraction.complex_content_extraction.complex_analysis import *
 
 # 获取article_1中的单句
 def get_article_1_single_content():
-    select_sql = '''select * from article_1_sentence where is_single = 1 and id > 693'''
+    select_sql = '''select * from article_1_sentence where is_single = 1 and id > 9113'''
     cursor = conn.cursor()
     cursor.execute(select_sql)
     single_contents = cursor.fetchall()
