@@ -81,7 +81,7 @@ def complex_extraction():
         # TODO: 调用复杂句关系抽取核心
         complex_extraction_core(dp_results, sdp_results, srl_results, complete_sentence, parsing_sentence)
         count = count + 1
-        if count > 10:
+        if count > 15:
             break
 
 
@@ -112,7 +112,7 @@ def complex_extraction_core(dp_results, sdp_results, srl_results, complete_sente
     core_srl_list = srl_results[core_verb]
     # 3.1 抽取核心动词标注的语义角色对应的关系
     core_srl_dict = srl_info_extract(core_srl_list)
-    print(core_comprehensive_analysis(core_verb, core_srl_dict, complete_sentence, parsing_sentence))
+    print(core_comprehensive_analysis(core_verb, core_srl_dict, complete_sentence, parsing_sentence, core_subject))
 
 
 def subject_complete(subject, dp_results):          # 利用定中关系，使用递归调用将主语补全
@@ -140,7 +140,7 @@ def srl_info_extract(srl_info_list):        # 整理语义角色标注结果，�
     return srl_info_dict
 
 
-def core_comprehensive_analysis(verb, srl_info_dict, complete_sentence, parsing_sentence):
+def core_comprehensive_analysis(verb, srl_info_dict, complete_sentence, parsing_sentence, core_subject):
     relation_list = []
     # 1. 有A0, A1, MNR
     if 'A0' in srl_info_dict and 'A1' in srl_info_dict and 'MNR' in srl_info_dict:
@@ -169,6 +169,9 @@ def core_comprehensive_analysis(verb, srl_info_dict, complete_sentence, parsing_
             elif verb in object:
                 relation_list.append(subject + '--' + verb + '-- ' + str(object).replace(verb, ""))
                 relation_list.append(object + '--' + mnr + '-- ' + '根据章节条款信息补全list')
+    # 4. 只有'MNR'
+    elif 'A0' not in srl_info_dict and 'A1' not in srl_info_dict and 'MNR' in srl_info_dict :
+        pass
     return relation_list
 
 
