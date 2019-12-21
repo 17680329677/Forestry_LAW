@@ -80,7 +80,7 @@ def complex_extraction():
         # TODO: 调用复杂句关系抽取核心
         complex_extraction_core(dp_results, sdp_results, srl_results, complete_sentence, parsing_sentence)
         count = count + 1
-        if count > 15:
+        if count > 30:
             break
 
 
@@ -110,15 +110,28 @@ def complex_extraction_core(dp_results, sdp_results, srl_results, complete_sente
         pass
     # 3. 结合dp 和 srl结果进行关系抽取
     # 3.1 抽取核心动词标注的语义角色对应的关系
+    relation_list = []
     if core_verb in srl_results:
         core_srl_list = srl_results[core_verb]
         core_srl_dict = srl_info_extract(core_srl_list)
-        print(parsing_sentence, '（核心主语：', core_subject, '）')
-        print(core_comprehensive_analysis(core_verb, core_srl_dict, complete_sentence, parsing_sentence, core_subject))
+        print(parsing_sentence, '（核心主语：', core_subject, '）--', len(coo_verb_list))
+        relation_list = core_comprehensive_analysis(core_verb,
+                                                    core_srl_dict,
+                                                    complete_sentence,
+                                                    parsing_sentence,
+                                                    core_subject)
     # 3.2 核心动词没有对应的语义角色 或者 与核心动词并列的动词列表不为空时，分析并列动词的语义角色关系
     # TODO: 核心动词没有对应的语义角色时，如何分析
-    if coo_verb_list is not None and len(coo_verb_list):
-        print(coo_verb_list)
+    if coo_verb_list is not None and len(coo_verb_list) > 0:
+        for coo_verb in coo_verb_list:
+            if coo_verb in srl_results:
+                srl_info_dict = srl_results[coo_verb]
+                relation_list = coo_comprehensive_analysis(relation_list,   # 核心动词关系分析后的关系列表
+                                                           core_subject,
+                                                           coo_verb,
+                                                           srl_info_dict,)
+    if relation_list is not None and len(relation_list) > 0:
+        print('djz：', relation_list)
 
 
 def subject_complete(subject, dp_results):          # 利用定中关系，使用递归调用将主语补全
@@ -189,26 +202,37 @@ def core_comprehensive_analysis(verb, srl_info_dict, complete_sentence, parsing_
             relation_list.append(srl_info_dict['A1'][0] + '--' + verb + '--' + '根据章节条款信息补全list')
     # 5. 只有'A0'
     elif 'A0' in srl_info_dict and 'A1' not in srl_info_dict and 'MNR' not in srl_info_dict:
-        if srl_info_dict['A0'][0] == core_subject:
-            relation_list.append(core_subject + '--' + verb + '--' + '根据章节条款信息补全list')
+        relation_list.append(core_subject + '--' + verb + '--' + '根据章节条款信息补全list')
     # 6. 只有'A1'
     elif 'A0' not in srl_info_dict and 'A1' in srl_info_dict and 'MNR' not in srl_info_dict:
         if core_subject is None or core_subject == '':
             relation_list.append(srl_info_dict['A1'][0] + '--' + verb + '--' + '根据章节条款信息补全list')
+        else:
+            relation_list.append(core_subject + '--' + srl_info_dict['A1'][0] + '--' + '根据章节条款信息补全list')
     # 7. 只有'MNR'
     elif 'A0' not in srl_info_dict and 'A1' not in srl_info_dict and 'MNR' in srl_info_dict:
         if core_subject is not None and core_subject != '':
             relation_list.append(core_subject + '--' + verb + '方式(依据)' + '--' + srl_info_dict['MNR'][0])
+        else:
+            relation_list.append(verb + srl_info_dict['MNR'][0] + '--' + '方式(依据)' + '--' + '根据章节条款信息补全list')
     return relation_list
 
 
 # 并列动词语义角色关系分析
-def coo_comprehensive_analysis(relation_list, core_subject, coo_verb, srl_info_dict, parsing_sentence):
-    pass
+def coo_comprehensive_analysis(relation_list, core_subject, coo_verb, srl_info_dict):
+    if 'A0' in srl_info_dict and 'A1' not in srl_info_dict and 'MNR' not in srl_info_dict:
+        common_str, common_len = get_num_of_common_substr(srl_info_dict['A0'][0], core_subject)
+        if common_len >= 2:
+            subject = srl_info_dict['A0'][0].replace(common_str, core_subject)
+            # TODO: 判断是否是复杂句
+            relation_list.append(subject + '--' + coo_verb + '--' + '根据章节条款信息补全list')
+    elif 'A0' not in srl_info_dict and 'A1' in srl_info_dict and 'MNR' not in srl_info_dict:
+        pass
+    return relation_list
 
 
 def is_contain_sentence(content):
-    complex_words = ['下列', '以下', '包括']
+    complex_words = ['下列', '以下', '包括', '如下']
     if '为' == content[-1]:
         return True
     for word in complex_words:
@@ -217,6 +241,27 @@ def is_contain_sentence(content):
     return False
 
 
+def get_num_of_common_substr(str1, str2):
+    lstr1 = len(str1)
+    lstr2 = len(str2)
+    record = [[0 for i in range(lstr2 + 1)] for j in range(lstr1 + 1)]  # 多一位
+    maxNum = 0  # 最长匹配长度
+    p = 0  # 匹配的起始位
+
+    for i in range(lstr1):
+        for j in range(lstr2):
+            if str1[i] == str2[j]:
+                # 相同则累加
+                record[i + 1][j + 1] = record[i][j] + 1
+                if record[i + 1][j + 1] > maxNum:
+                    # 获取最大匹配长度
+                    maxNum = record[i + 1][j + 1]
+                    # 记录最大匹配长度的终止位置
+                    p = i + 1
+    return str1[p - maxNum:p], maxNum
+
+
 if __name__ == '__main__':
     # write_to_file_for_observe()
-    complex_extraction()
+    print(get_num_of_common_substr('竣工验收', '验收的主要内容'))
+    # complex_extraction()
