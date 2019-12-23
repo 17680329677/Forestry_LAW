@@ -63,11 +63,11 @@ def write_to_file_for_observe():
 
 def complex_extraction():
     query_for_parse_sentence = '''select complete_sentence, parse_sentence, class, sentence_id 
-                                      from dependency_parsing_result group by parse_sentence order by id'''
+                                  from dependency_parsing_result 
+                                  where is_complex = 1 and sentence_id > 9481 group by parse_sentence order by id'''
     cursor = conn.cursor()
     cursor.execute(query_for_parse_sentence)
     parse_sentences = cursor.fetchall()
-    count = 0
     for parse_sentence in parse_sentences:
         complete_sentence = parse_sentence[0]
         parsing_sentence = parse_sentence[1]
@@ -79,9 +79,6 @@ def complex_extraction():
         srl_results = decode_srl_results(cursor.fetchall())
         # TODO: 调用复杂句关系抽取核心
         complex_extraction_core(dp_results, sdp_results, srl_results, complete_sentence, parsing_sentence)
-        count = count + 1
-        if count > 30:
-            break
 
 
 def complex_extraction_core(dp_results, sdp_results, srl_results, complete_sentence, parsing_sentence):
@@ -125,13 +122,50 @@ def complex_extraction_core(dp_results, sdp_results, srl_results, complete_sente
     if coo_verb_list is not None and len(coo_verb_list) > 0:
         for coo_verb in coo_verb_list:
             if coo_verb in srl_results:
-                srl_info_dict = srl_results[coo_verb]
+                print(coo_verb, ': ', srl_results[coo_verb])
+                srl_info_dict = srl_info_extract(srl_results[coo_verb])
                 relation_list = coo_comprehensive_analysis(relation_list,   # 核心动词关系分析后的关系列表
                                                            core_subject,
                                                            coo_verb,
                                                            srl_info_dict,)
     if relation_list is not None and len(relation_list) > 0:
-        print('djz：', relation_list)
+        law_id = dp_results[0][1]           # 对应法律id
+        content_class = dp_results[0][2]    # 文本来自article_1 or article_2
+        chapter_id = dp_results[0][3]       # chapter_id
+        sentence_id = dp_results[0][4]      # sentence_id
+        # is_complex = dp_results[0][10]      # 是否是复杂句（包含子句)
+        # 存入数据库
+        save_relation(relation_list, law_id, content_class, chapter_id, sentence_id)
+        print("=========================================================================================")
+        print()
+
+
+def save_relation(relation_list, law_id, content_class, chapter_id, sentence_id):
+    cursor = conn.cursor()
+    insert_sql = '''insert into extract_relation 
+                    (law_id, class, chapter_id, sentence_id, is_contain, subject, relation, object)
+                    value (%s, %s, %s, %s, %s, %s, %s, %s)'''
+    for relation in relation_list:
+        subject = relation[0]
+        relation_name = relation[1]
+        object = relation[2]
+        is_contain = 0
+        if object == '根据章节条款信息补全list':
+            is_contain = 1
+        try:
+            cursor.execute(insert_sql, (law_id,
+                                        content_class,
+                                        chapter_id,
+                                        sentence_id,
+                                        is_contain,
+                                        subject,
+                                        relation_name,
+                                        object))
+            conn.commit()
+            print(subject, relation_name, object, '--------saved--------')
+        except Exception as e:
+            conn.rollback()
+            print('\033[1;32;41m' + relation + e + ': FAILED---------' + '\033[0m')
 
 
 def subject_complete(subject, dp_results):          # 利用定中关系，使用递归调用将主语补全
@@ -168,20 +202,20 @@ def core_comprehensive_analysis(verb, srl_info_dict, complete_sentence, parsing_
     if 'A0' in srl_info_dict and 'A1' in srl_info_dict and 'MNR' in srl_info_dict:
         method_subject = srl_info_dict['A0'][0]     # 获取主语(首实体)
         method_mnr = srl_info_dict['MNR'][0]        # 获取mnr方法
-        methon_object = srl_info_dict['A1'][0]      # 获取宾语(尾实体)
-        relation_list.append(method_subject + '--' + verb + '--' + methon_object)
+        method_object = srl_info_dict['A1'][0]      # 获取宾语(尾实体)
+        relation_list.append(tuple((method_subject, verb, method_object)))
         if is_contain_sentence(method_mnr):
-            contain_subject = methon_object
-            relation_list.append(contain_subject + '--' + method_mnr + '-- ' + '根据章节条款信息补全list')
+            contain_subject = method_object
+            relation_list.append(tuple((contain_subject, method_mnr, '根据章节条款信息补全list')))
     # 2. 有A0, A1, 无MNR
     elif 'A0' in srl_info_dict and 'A1' in srl_info_dict and 'MNR' not in srl_info_dict:
         subject = srl_info_dict['A0'][0]
         relation = verb
         object = srl_info_dict['A1'][0]
         if is_contain_sentence(object):
-            relation_list.append(subject + '--' + relation + object + '--' + '根据章节条款信息补全list')
+            relation_list.append(tuple((subject, relation + object, '根据章节条款信息补全list')))
         else:
-            relation_list.append(subject + '--' + relation + '--' + object)
+            relation_list.append(tuple((subject, relation, object)))
     # 3. 有A0，有MNR，无A1和其他
     elif 'A0' in srl_info_dict and 'MNR' in srl_info_dict and 'A1' not in srl_info_dict:
         subject = srl_info_dict['A0'][0]
@@ -190,44 +224,57 @@ def core_comprehensive_analysis(verb, srl_info_dict, complete_sentence, parsing_
             beg_index = str(parsing_sentence).index(mnr)
             object = parsing_sentence[beg_index + len(mnr):].replace("：", "")
             if verb == object:      # 如果提取出的宾语（尾实体）就是当前动词本身，将MNR和宾语合起来作为关系
-                relation_list.append(subject + '--' + mnr + object + '-- ' + '根据章节条款信息补全list')
+                relation_list.append(tuple((subject, mnr + object, '根据章节条款信息补全list')))
             elif verb in object:
-                relation_list.append(subject + '--' + verb + '-- ' + str(object).replace(verb, ""))
-                relation_list.append(object + '--' + mnr + '-- ' + '根据章节条款信息补全list')
+                relation_list.append(tuple((subject, verb, str(object).replace(verb, ""))))
+                relation_list.append(tuple((object, mnr, '根据章节条款信息补全list')))
     # 4. 没有A0，有MNR，有A1
     elif 'A0' not in srl_info_dict and 'MNR' in srl_info_dict and 'A1' in srl_info_dict:
         if srl_info_dict['A1'][0] == core_subject:
-            relation_list.append(core_subject + '--' + srl_info_dict['MNR'][0] + verb + '--' + '根据章节条款信息补全list')
+            relation_list.append(tuple((core_subject, srl_info_dict['MNR'][0] + verb, '根据章节条款信息补全list')))
         elif is_contain_sentence(srl_info_dict['A1'][0]):
-            relation_list.append(srl_info_dict['A1'][0] + '--' + verb + '--' + '根据章节条款信息补全list')
+            relation_list.append(tuple((srl_info_dict['A1'][0], verb, '根据章节条款信息补全list')))
     # 5. 只有'A0'
     elif 'A0' in srl_info_dict and 'A1' not in srl_info_dict and 'MNR' not in srl_info_dict:
-        relation_list.append(core_subject + '--' + verb + '--' + '根据章节条款信息补全list')
+        relation_list.append(tuple((core_subject, verb, '根据章节条款信息补全list')))
     # 6. 只有'A1'
     elif 'A0' not in srl_info_dict and 'A1' in srl_info_dict and 'MNR' not in srl_info_dict:
         if core_subject is None or core_subject == '':
-            relation_list.append(srl_info_dict['A1'][0] + '--' + verb + '--' + '根据章节条款信息补全list')
+            relation_list.append(tuple((srl_info_dict['A1'][0], verb, '根据章节条款信息补全list')))
         else:
-            relation_list.append(core_subject + '--' + srl_info_dict['A1'][0] + '--' + '根据章节条款信息补全list')
+            relation_list.append(tuple((core_subject, srl_info_dict['A1'][0], '根据章节条款信息补全list')))
     # 7. 只有'MNR'
     elif 'A0' not in srl_info_dict and 'A1' not in srl_info_dict and 'MNR' in srl_info_dict:
         if core_subject is not None and core_subject != '':
-            relation_list.append(core_subject + '--' + verb + '方式(依据)' + '--' + srl_info_dict['MNR'][0])
+            relation_list.append(tuple((core_subject, verb + '方式(依据)', srl_info_dict['MNR'][0])))
         else:
-            relation_list.append(verb + srl_info_dict['MNR'][0] + '--' + '方式(依据)' + '--' + '根据章节条款信息补全list')
+            relation_list.append(tuple((verb + srl_info_dict['MNR'][0], '方式(依据)', '根据章节条款信息补全list')))
     return relation_list
 
 
 # 并列动词语义角色关系分析
 def coo_comprehensive_analysis(relation_list, core_subject, coo_verb, srl_info_dict):
     if 'A0' in srl_info_dict and 'A1' not in srl_info_dict and 'MNR' not in srl_info_dict:
-        common_str, common_len = get_num_of_common_substr(srl_info_dict['A0'][0], core_subject)
-        if common_len >= 2:
+        if core_subject is not None:
+            common_str, common_len = get_num_of_common_substr(srl_info_dict['A0'][0], core_subject)
+        else:
+            common_str = ''
+            common_len = 0
+        if common_len >= 2 and (is_contain_sentence(srl_info_dict['A0'][0]) or is_contain_sentence(coo_verb)):
             subject = srl_info_dict['A0'][0].replace(common_str, core_subject)
             # TODO: 判断是否是复杂句
-            relation_list.append(subject + '--' + coo_verb + '--' + '根据章节条款信息补全list')
+            relation_list.append(tuple((subject, coo_verb, '根据章节条款信息补全list')))
+        elif len(relation_list) > 0 and (is_contain_sentence(srl_info_dict['A0'][0]) or is_contain_sentence(coo_verb)):
+            coo_subject = relation_list[-1][2]
+            relation_list.append(tuple((coo_subject, srl_info_dict['A0'][0] + coo_verb, '根据章节条款信息补全list')))
     elif 'A0' not in srl_info_dict and 'A1' in srl_info_dict and 'MNR' not in srl_info_dict:
-        pass
+        if relation_list is not None and \
+                len(relation_list) != 0 and \
+                (is_contain_sentence(srl_info_dict['A1'][0]) or is_contain_sentence(coo_verb)):
+            coo_subject = relation_list[-1][2]
+            relation_list.append(tuple((coo_subject, coo_verb + srl_info_dict['A1'][0], '根据章节条款信息补全list')))
+        else:
+            relation_list.append(tuple((core_subject, coo_verb + srl_info_dict['A1'][0], '根据章节条款信息补全list')))
     return relation_list
 
 
@@ -263,5 +310,4 @@ def get_num_of_common_substr(str1, str2):
 
 if __name__ == '__main__':
     # write_to_file_for_observe()
-    print(get_num_of_common_substr('竣工验收', '验收的主要内容'))
-    # complex_extraction()
+    complex_extraction()
