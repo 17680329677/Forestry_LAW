@@ -2,6 +2,7 @@
 # coding: utf-8
 from pymongo import MongoClient
 import pymysql
+from DBUtils.PooledDB import PooledDB
 
 # MongoDB连接资源
 mongo_conn = MongoClient('localhost', 27017)
@@ -16,3 +17,16 @@ conn = pymysql.connect(
     database='forestry_law',
     charset='utf8'
 )
+
+
+# 数据库连接池配置
+pool = PooledDB(pymysql,
+                4,
+                host="127.0.0.1",
+                user="root",
+                passwd="123456",
+                db="forestry_law",
+                port=3306,
+                setsession=['SET AUTOCOMMIT = 1'],
+                charset='utf8'
+                )
