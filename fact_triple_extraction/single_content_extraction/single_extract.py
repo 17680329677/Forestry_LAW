@@ -52,6 +52,12 @@ def subject_complete(subject, dp_results):          # 利用定中关系，使�
     while index >= 0:
         if dp_results[index][8] == '定中关系-ATT' and last_word == dp_results[index][7]:
             subject = dp_results[index][9] + subject
+            # 右附加关系主语补全代码更新
+            if index - 2 >= 0 and dp_results[index - 1] == '右附加关系-RAD' and dp_results[index - 2] == '定中关系-ATT':
+                subject = dp_results[index - 2][9] + dp_results[index - 1][9] + subject
+                last_word = dp_results[index - 2][9]
+                index = index - 2
+                continue
             if index - 1 >= 0 and dp_results[index - 1][8] == '定中关系-ATT' and dp_results[index][9] == dp_results[index - 1][7]:
                 last_word = dp_results[index][9]
         elif dp_results[index][7] == last_word and dp_results[index][8] == '主谓关系-SBV':
@@ -125,39 +131,100 @@ def single_extract_core(dp_results, sdp_results, srl_results):
                     relation_list.append(tuple((coo_srl_dict['TMP'][0], coo_verb, coo_srl_dict['A1'][0])))
                 elif 'LOC' in coo_srl_dict and 'A1'in coo_srl_dict:
                     relation_list.append(tuple((coo_srl_dict['LOC'][0], coo_verb, coo_srl_dict['A1'][0])))
-    else:
+    elif core_subject is not None:
         # TODO: 找到了核心主语，从核心主语出发制定规则抽取关系
+        complete_sentence = dp_results[0][5]
+        parsing_sentence = dp_results[0][6]
         if core_verb in srl_results:
+            # 调用核心动词及主语的关系抽取方法
             core_srl_list = srl_results[core_verb]
             core_srl_dict = srl_info_extract(core_srl_list)
-            complete_sentence = dp_results[0][5]
-            parsing_sentence = dp_results[0][6]
-            # 调用核心动词及主语的关系抽取方法
             relation_list = core_single_relation_analysis(core_verb,            # 核心动词
                                                           core_srl_dict,        # 核心动词的语义角色标注信息
                                                           core_subject,         # 核心主语
                                                           parsing_sentence,     # 解析句
                                                           relation_list)        # 现有关系list
         if len(coo_verb_list) > 0:      # 分析与核心动词并列动词的语义角色包含的关系
-            pass
+            for coo_verb in coo_verb_list:
+                if coo_verb in srl_results:
+                    coo_srl_list = srl_results[coo_verb]
+                    coo_srl_dict = srl_info_extract(coo_srl_list)
+                    relation_list = coo_single_relation_analysis(coo_verb,
+                                                                 coo_srl_dict,
+                                                                 core_subject,
+                                                                 parsing_sentence,
+                                                                 relation_list)
     # TODO: 存储关系
     if relation_list is not None and len(relation_list) > 0:
-        print(relation_list)
+        pass
     save_relation_to_db()
     pass
 
 
+# 核心动词关系抽取
 def core_single_relation_analysis(core_verb, core_srl_dict, core_subject, parsing_sentence, relation_list):
-    print(parsing_sentence)
-    print('verb:', core_verb)
-    print('subject:', core_subject)
-    print('srl_info:', core_srl_dict)
-    print("============================================================================================")
+    # 1. 有A0、A1，无其他语义角色
+    if 'A0' in core_srl_dict and 'A1' in core_srl_dict \
+            and 'MNR' not in core_srl_dict and 'LOC' not in core_srl_dict and 'TMP' not in core_srl_dict:
+        common_str, common_len = get_num_of_common_substr(core_subject, core_srl_dict['A0'][0])
+        if common_len > 2:
+            if len(core_subject) > len(core_srl_dict['A0'][0]):
+                relation_list.append(tuple((core_subject, core_verb, core_srl_dict['A1'][0])))
+            else:
+                relation_list.append(tuple((core_srl_dict['A0'][0], core_verb, core_srl_dict['A1'][0])))
+        else:
+            relation_list.append(tuple((core_srl_dict['A0'][0], core_verb, core_srl_dict['A1'][0])))
+
+    # 2. 无A0， 有MNR和多个A1
+    elif 'A0' not in core_srl_dict and 'MNR' in core_srl_dict and 'A1' in core_srl_dict:
+        a1_sentence = "".join(core_srl_dict['A1'])
+        relation_list.append(tuple((core_subject + core_verb + a1_sentence, '依据/方式', core_srl_dict['MNR'][0])))
+
+    # 3. 有TMP、LOC等，无A1， 有A1
+    elif 'A0' in core_srl_dict and 'A1' not in core_srl_dict and ('TMP' in core_srl_dict or 'LOC' in core_srl_dict):
+        process_object = ''
+        if 'TMP' in core_srl_dict:
+            process_object = "".join(core_srl_dict['TMP']) + core_srl_dict['A0'][0] + core_verb
+        elif 'LOC' in core_srl_dict:
+            process_object = "".join(core_srl_dict['LOC']) + core_srl_dict['A0'][0] + core_verb
+        relation_list.append(tuple((core_subject, core_verb + '流程/依据', process_object)))
+
+    # 4. 无A0， 有A1
+    elif 'A0' not in core_srl_dict and 'A1' in core_srl_dict:
+        if core_srl_dict['A1'][0] != core_subject:
+            relation_list.append(tuple((core_subject, core_verb, "".join(core_srl_dict['A1']))))
+    print(parsing_sentence, '--', core_subject, '\n', relation_list, '\n', core_srl_dict, '\n\n\n')
+    return relation_list
+
+
+# 并列动词关系抽取
+def coo_single_relation_analysis(coo_verb, coo_srl_dict, core_subject, parsing_sentence, relation_list):
+    pass
     return relation_list
 
 
 def save_relation_to_db():
     pass
+
+
+def get_num_of_common_substr(str1, str2):
+    lstr1 = len(str1)
+    lstr2 = len(str2)
+    record = [[0 for i in range(lstr2 + 1)] for j in range(lstr1 + 1)]  # 多一位
+    maxNum = 0  # 最长匹配长度
+    p = 0  # 匹配的起始位
+
+    for i in range(lstr1):
+        for j in range(lstr2):
+            if str1[i] == str2[j]:
+                # 相同则累加
+                record[i + 1][j + 1] = record[i][j] + 1
+                if record[i + 1][j + 1] > maxNum:
+                    # 获取最大匹配长度
+                    maxNum = record[i + 1][j + 1]
+                    # 记录最大匹配长度的终止位置
+                    p = i + 1
+    return str1[p - maxNum:p], maxNum
 
 
 # 将抽取任务的不同组开启不同的线程

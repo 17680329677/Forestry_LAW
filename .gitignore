@@ -6,4 +6,4 @@
 *.iml
 *.ipr
 
-nsq*
+nsqd*
