@@ -1,11 +1,17 @@
 #!/usr/bin/env python
 # coding=utf-8
 from fact_triple_extraction.xf_ltp_api import *
+from data_resource import pool
 from fact_triple_extraction.single_content_extraction.get_single_content import *
+import threading
 
 
-def xunfei_complex_analysis_and_save(contents):
-    dp_tags, sdp_tags = get_tags()
+sql_control_lock = threading.Lock()
+
+
+# 改名
+def xunfei_single_analysis_and_save(contents, dp_tags, sdp_tags):
+    # dp_tags, sdp_tags = get_tags()
     for content_tuple in contents:
         law_id = content_tuple[0]
         article_class = content_tuple[1]
@@ -24,6 +30,7 @@ def xunfei_complex_analysis_and_save(contents):
                 if words_list is None or postags_list is None or dp_info is None or srl_info is None or sdgp_info is None:
                     continue
 
+                dp_result_list = []
                 for index in range(len(dp_info)):
                     parent_index = dp_info[index]['parent']
                     if parent_index == -1:
@@ -47,10 +54,11 @@ def xunfei_complex_analysis_and_save(contents):
                                  reletion_name,  # 关系
                                  child_word,  # 尾词
                                  is_complex]  # 是否是复杂句
-                    save_to_dependency_parsing_result(dp_result)
-                    print("%s -----(%s)---- %s" % (parent_word, reletion_name, child_word))
+                    dp_result_list.append(dp_result)
+                    # save_to_dependency_parsing_result(dp_result)
+                    # print("%s -----(%s)---- %s" % (parent_word, reletion_name, child_word))
 
-                print('-------------------------语义依存分析结果打印----------------------------')
+                sdp_result_list = []
                 for sdp_index in range(len(sdgp_info)):
                     sdp_parent_index = sdgp_info[sdp_index]['parent']
                     if sdp_parent_index == -1:
@@ -82,10 +90,11 @@ def xunfei_complex_analysis_and_save(contents):
                                   semantic_dp_name,
                                   sdp_child_word,
                                   is_complex]  # 是否是复杂句
-                    save_to_semantic_dependency_result(sdp_result)
-                    print("%s(%s)-----%s-----%s(%s)" % (
-                        sdp_parent_word, postags_list[sdp_parent_index], semantic_dp_name, sdp_child_word,
-                        postags_list[sdp_child_index]))
+                    sdp_result_list.append(sdp_result)
+                    # save_to_semantic_dependency_result(sdp_result)
+                    # print("%s(%s)-----%s-----%s(%s)" % (
+                    #     sdp_parent_word, postags_list[sdp_parent_index], semantic_dp_name, sdp_child_word,
+                    #     postags_list[sdp_child_index]))
 
                 print('-------------------------语义角色标注结果打印----------------------------')
                 role_lable_dict = dict()
@@ -100,7 +109,7 @@ def xunfei_complex_analysis_and_save(contents):
                         role_lable_dict.update({verb: []})
                         role_lable_dict[verb].append(
                             tuple((role_label['type'], "".join(words_list[begin: end + 1]))))
-                print(role_lable_dict)
+                # print(role_lable_dict)
                 # TODO: 将语义角色标注信息存入数据库
                 role_label_result = [law_id,
                                      article_class,
@@ -110,66 +119,76 @@ def xunfei_complex_analysis_and_save(contents):
                                      content,
                                      role_lable_dict,
                                      is_complex]  # 是否是复杂句
-                save_to_semantic_role_label_result(role_label_result)
+                # save_to_semantic_role_label_result(role_label_result)
                 print('=========================================================================================')
+                sql_control_lock.acquire()
+                save_to_dependency_parsing_result(dp_result_list)
+                save_to_semantic_dependency_result(sdp_result_list)
+                save_to_semantic_role_label_result(role_label_result)
+                sql_control_lock.release()
 
 
 def save_to_dependency_parsing_result(result):
     insert_sql = '''insert into dependency_parsing_result (law_id, class, chapter_id, sentence_id, complete_sentence, 
                     parse_sentence, front_word, dependency_parsing_relation, tail_word, is_complex) 
                     value (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
-    cursor = conn.cursor()
-    law_id = result[0]
-    article_class = result[1]
-    chapter_id = result[2]
-    sentence_id = result[3]
-    complete_sentence = result[4]
-    parse_sentence = result[5]
-    front_word = result[6]
-    dependency_parsing_relation = result[7]
-    tail_word = result[8]
-    is_complex = result[9]
-    try:
-        cursor.execute(insert_sql, (law_id, article_class, chapter_id, sentence_id, complete_sentence,
-                                    parse_sentence, front_word, dependency_parsing_relation, tail_word, is_complex))
-        conn.commit()
-        print(sentence_id, parse_sentence, '----DEPENDENCY PARSING SUCCESS----')
-    except Exception as e:
-        conn.rollback()
-        print('\033[1;32;41m' + sentence_id + ': ' + parse_sentence + 'DP FAILED' + e + '\033[0m')
+    pool_conn = pool.connection()
+    cursor = pool_conn.cursor()
+    for res in result:
+        law_id = res[0]
+        article_class = res[1]
+        chapter_id = res[2]
+        sentence_id = res[3]
+        complete_sentence = res[4]
+        parse_sentence = res[5]
+        front_word = res[6]
+        dependency_parsing_relation = res[7]
+        tail_word = res[8]
+        is_complex = res[9]
+        try:
+            cursor.execute(insert_sql, (law_id, article_class, chapter_id, sentence_id, complete_sentence,
+                                        parse_sentence, front_word, dependency_parsing_relation, tail_word, is_complex))
+            conn.commit()
+            print(sentence_id, parse_sentence, '----DEPENDENCY PARSING SUCCESS----')
+        except Exception as e:
+            conn.rollback()
+            print('\033[1;32;41m' + sentence_id + ': ' + parse_sentence + 'DP FAILED' + e + '\033[0m')
 
 
 def save_to_semantic_dependency_result(result):
     insert_sql = '''insert into semantic_dependency_result (law_id, class, chapter_id, sentence_id, complete_sentence, 
                     parse_sentence, front_word, semantic_dependency_relation, tail_word, is_complex) 
                     value (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
-    cursor = conn.cursor()
-    law_id = result[0]
-    article_class = result[1]
-    chapter_id = result[2]
-    sentence_id = result[3]
-    complete_sentence = result[4]
-    parse_sentence = result[5]
-    front_word = result[6]
-    semantic_dependency_relation = result[7]
-    tail_word = result[8]
-    is_complex = result[9]
-    try:
-        cursor.execute(insert_sql, (law_id, article_class, chapter_id, sentence_id, complete_sentence,
-                                    parse_sentence, front_word, semantic_dependency_relation, tail_word, is_complex))
-        conn.commit()
-        print(sentence_id, parse_sentence, '----SEMANTIC DEPENDENCY PARSING SUCCESS----')
-    except Exception as e:
-        conn.rollback()
-        print('\033[1;32;41m' + sentence_id + ': ' + parse_sentence + 'SDP FAILED' + e + '\033[0m')
-    pass
+    pool_conn = pool.connection()
+    cursor = pool_conn.cursor()
+    for res in result:
+        law_id = res[0]
+        article_class = res[1]
+        chapter_id = res[2]
+        sentence_id = res[3]
+        complete_sentence = res[4]
+        parse_sentence = res[5]
+        front_word = res[6]
+        semantic_dependency_relation = res[7]
+        tail_word = res[8]
+        is_complex = res[9]
+        try:
+            cursor.execute(insert_sql, (law_id, article_class, chapter_id, sentence_id, complete_sentence,
+                                        parse_sentence, front_word, semantic_dependency_relation, tail_word, is_complex))
+            conn.commit()
+            print(sentence_id, parse_sentence, '----SEMANTIC DEPENDENCY PARSING SUCCESS----')
+        except Exception as e:
+            conn.rollback()
+            print('\033[1;32;41m' + sentence_id + ': ' + parse_sentence + 'SDP FAILED' + e + '\033[0m')
+        pass
 
 
 def save_to_semantic_role_label_result(result):
     insert_sql = '''insert into semantic_role_label_result (law_id, class, chapter_id, sentence_id, 
                     complete_sentence, parse_sentence, verb, role_label, content, is_complex) 
                     value (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
-    cursor = conn.cursor()
+    pool_conn = pool.connection()
+    cursor = pool_conn.cursor()
     law_id = result[0]
     article_class = result[1]
     chapter_id = result[2]
@@ -191,6 +210,18 @@ def save_to_semantic_role_label_result(result):
                 print('\033[1;32;41m' + sentence_id + ': ' + parse_sentence + 'SRL FAILED' + e + '\033[0m')
 
 
+# 将抽取任务的不同组开启不同的线程
+def start_multiple_thread_to_analysis(func_name, thread_num, contents_group, dp_tags, sdp_tags):
+    thread_pool = []
+    for index in range(thread_num):
+        thread_pool.append(threading.Thread(target=func_name, args=(contents_group[index], dp_tags, sdp_tags,)))
+    for i in range(len(thread_pool)):
+        thread_pool[i].start()
+
+
 if __name__ == '__main__':
+    thread_num = 3
+    dp_tags, sdp_tags = get_tags()
     article_1_single_contents = get_article_1_single_content()
-    xunfei_complex_analysis_and_save(article_1_single_contents)
+    contents_group = single_content_group(article_1_single_contents, thread_num)
+    start_multiple_thread_to_analysis(xunfei_single_analysis_and_save, thread_num, contents_group, dp_tags, sdp_tags)

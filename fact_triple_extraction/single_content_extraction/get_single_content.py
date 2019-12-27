@@ -6,7 +6,7 @@ from fact_triple_extraction.complex_content_extraction.complex_analysis import *
 
 # 获取article_1中的单句
 def get_article_1_single_content():
-    select_sql = '''select * from article_1_sentence where is_single = 1 and id > 14477'''
+    select_sql = '''select * from article_1_sentence where is_single = 1 and id > 31817'''
     cursor = conn.cursor()
     cursor.execute(select_sql)
     single_contents = cursor.fetchall()
@@ -32,5 +32,19 @@ def get_article_2_single_content():
     pass
 
 
+# 将获取到的数据按照指定线程数分组
+def single_content_group(single_contents, thread_num):
+    content_group = []
+    group_num = len(single_contents) // thread_num
+    for index in range(thread_num):
+        content_group.append([])
+        if index == thread_num - 1:
+            content_group[index] = single_contents[index * group_num:]
+        else:
+            content_group[index] = single_contents[index * group_num: (index + 1) * group_num]
+    return content_group
+
+
 if __name__ == '__main__':
-    pass
+    single_contents = get_article_1_single_content()
+    single_content_group(single_contents, 3)
