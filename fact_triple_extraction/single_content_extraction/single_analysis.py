@@ -6,11 +6,8 @@ from fact_triple_extraction.single_content_extraction.get_single_content import 
 import threading
 
 
-sql_control_lock = threading.Lock()
-
-
 # 改名
-def xunfei_single_analysis_and_save(contents, dp_tags, sdp_tags):
+def xunfei_single_analysis_and_save(contents, dp_tags, sdp_tags, lock):
     # dp_tags, sdp_tags = get_tags()
     for content_tuple in contents:
         law_id = content_tuple[0]
@@ -121,11 +118,11 @@ def xunfei_single_analysis_and_save(contents, dp_tags, sdp_tags):
                                      is_complex]  # 是否是复杂句
                 # save_to_semantic_role_label_result(role_label_result)
                 print('=========================================================================================')
-                sql_control_lock.acquire()
+                lock.acquire()
                 save_to_dependency_parsing_result(dp_result_list)
                 save_to_semantic_dependency_result(sdp_result_list)
                 save_to_semantic_role_label_result(role_label_result)
-                sql_control_lock.release()
+                lock.release()
 
 
 def save_to_dependency_parsing_result(result):
@@ -211,10 +208,10 @@ def save_to_semantic_role_label_result(result):
 
 
 # 将抽取任务的不同组开启不同的线程
-def start_multiple_thread_to_analysis(func_name, thread_num, contents_group, dp_tags, sdp_tags):
+def start_multiple_thread_to_analysis(func_name, thread_num, contents_group, dp_tags, sdp_tags, lock):
     thread_pool = []
     for index in range(thread_num):
-        thread_pool.append(threading.Thread(target=func_name, args=(contents_group[index], dp_tags, sdp_tags,)))
+        thread_pool.append(threading.Thread(target=func_name, args=(contents_group[index], dp_tags, sdp_tags, lock)))
     for i in range(len(thread_pool)):
         thread_pool[i].start()
 
@@ -222,6 +219,12 @@ def start_multiple_thread_to_analysis(func_name, thread_num, contents_group, dp_
 if __name__ == '__main__':
     thread_num = 3
     dp_tags, sdp_tags = get_tags()
+    sql_control_lock = threading.Lock()
     article_1_single_contents = get_article_1_single_content()
     contents_group = single_content_group(article_1_single_contents, thread_num)
-    start_multiple_thread_to_analysis(xunfei_single_analysis_and_save, thread_num, contents_group, dp_tags, sdp_tags)
+    start_multiple_thread_to_analysis(xunfei_single_analysis_and_save,
+                                      thread_num,
+                                      contents_group,
+                                      dp_tags,
+                                      sdp_tags,
+                                      sql_control_lock)
