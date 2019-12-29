@@ -217,7 +217,7 @@ def start_multiple_thread_to_analysis(func_name, thread_num, contents_group, dp_
 
 
 if __name__ == '__main__':
-    thread_num = 3
+    thread_num = 4
     dp_tags, sdp_tags = get_tags()
     sql_control_lock = threading.Lock()
     article_1_single_contents = get_article_1_single_content()
