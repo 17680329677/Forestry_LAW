@@ -21,7 +21,7 @@ conn = pymysql.connect(
 
 # 数据库连接池配置
 pool = PooledDB(pymysql,
-                4,                  # 连接池最少连接数
+                10,                  # 连接池最少连接数
                 host="127.0.0.1",
                 user="root",
                 passwd="123456",

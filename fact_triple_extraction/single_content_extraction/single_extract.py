@@ -80,7 +80,7 @@ def srl_info_extract(srl_info_list):        # 整理语义角色标注结果，�
 
 
 # 关系抽取任务
-def extract_task(extract_sentences):
+def extract_task(extract_sentences, lock):
     pool_conn = pool.connection()
     cursor = pool_conn.cursor()
     for extract_sentence in extract_sentences:
@@ -91,11 +91,11 @@ def extract_task(extract_sentences):
         cursor.execute(SELECT_SRL_SQL, (extract_sentence[1], extract_sentence[2], extract_sentence[3]))
         srl_results = decode_srl_results(cursor.fetchall())
         # TODO：查询并分析DP、SDP、SRL分析结果
-        single_extract_core(dp_results, sdp_results, srl_results)
+        single_extract_core(dp_results, sdp_results, srl_results, lock)
 
 
 # 分析关系的核心方法
-def single_extract_core(dp_results, sdp_results, srl_results):
+def single_extract_core(dp_results, sdp_results, srl_results, lock):
     # 1. 找到核心动词 以及 与 核心动词并列的动词
     core_verb = None
     coo_verb_list = []
@@ -156,9 +156,14 @@ def single_extract_core(dp_results, sdp_results, srl_results):
                                                                  relation_list)
     # TODO: 存储关系
     if relation_list is not None and len(relation_list) > 0:
-        pass
-    save_relation_to_db()
-    pass
+        print("(t:%s | i:%s)-%s\n%s" % (threading.get_ident(), dp_results[0][4], dp_results[0][6], relation_list))
+        law_id = dp_results[0][1]
+        content_class = dp_results[0][2]
+        chapter_id = dp_results[0][3]  # chapter_id
+        sentence_id = dp_results[0][4]  # sentence_id
+        lock.acquire()
+        save_relation_to_db(law_id, content_class, chapter_id, sentence_id, relation_list)
+        lock.release()
 
 
 # 核心动词关系抽取
@@ -166,6 +171,10 @@ def core_single_relation_analysis(core_verb, core_srl_dict, core_subject, parsin
     # 1. 有A0、A1，无其他语义角色
     if 'A0' in core_srl_dict and 'A1' in core_srl_dict \
             and 'MNR' not in core_srl_dict and 'LOC' not in core_srl_dict and 'TMP' not in core_srl_dict:
+
+        if 'ADV' in core_srl_dict:
+            core_verb = core_srl_dict['ADV'][0] + core_verb
+
         common_str, common_len = get_num_of_common_substr(core_subject, core_srl_dict['A0'][0])
         if common_len > 2:
             if len(core_subject) > len(core_srl_dict['A0'][0]):
@@ -178,6 +187,8 @@ def core_single_relation_analysis(core_verb, core_srl_dict, core_subject, parsin
     # 2. 无A0， 有MNR和多个A1
     elif 'A0' not in core_srl_dict and 'MNR' in core_srl_dict and 'A1' in core_srl_dict:
         a1_sentence = "".join(core_srl_dict['A1'])
+        if 'ADV' in core_srl_dict:
+            core_verb = core_srl_dict['ADV'][0] + core_verb
         relation_list.append(tuple((core_subject + core_verb + a1_sentence, '依据/方式', core_srl_dict['MNR'][0])))
 
     # 3. 有TMP、LOC等，无A1， 有A1
@@ -191,20 +202,60 @@ def core_single_relation_analysis(core_verb, core_srl_dict, core_subject, parsin
 
     # 4. 无A0， 有A1
     elif 'A0' not in core_srl_dict and 'A1' in core_srl_dict:
+        if 'ADV' in core_srl_dict:
+            core_verb = core_srl_dict['ADV'][0] + core_verb
         if core_srl_dict['A1'][0] != core_subject:
             relation_list.append(tuple((core_subject, core_verb, "".join(core_srl_dict['A1']))))
-    print(parsing_sentence, '--', core_subject, '\n', relation_list, '\n', core_srl_dict, '\n\n\n')
+    # print(parsing_sentence, '--', core_subject, '\n', relation_list, '\n', core_srl_dict, '\n\n\n')
     return relation_list
 
 
 # 并列动词关系抽取
 def coo_single_relation_analysis(coo_verb, coo_srl_dict, core_subject, parsing_sentence, relation_list):
-    pass
+    if 'A0' in coo_srl_dict and 'A1' in coo_srl_dict:
+
+        if 'ADV' in coo_srl_dict:
+            coo_verb = coo_srl_dict['ADV'][0]
+        common_str, common_len = get_num_of_common_substr(core_subject, coo_srl_dict['A0'][0])
+        if common_len > 2:
+            if len(core_subject) > len(coo_srl_dict['A0'][0]):
+                relation_list.append(tuple((core_subject, coo_verb, coo_srl_dict['A1'][0])))
+            else:
+                relation_list.append(tuple((coo_srl_dict['A0'][0], coo_verb, coo_srl_dict['A1'][0])))
+        else:
+            relation_list.append(tuple((coo_srl_dict['A0'][0], coo_verb, coo_srl_dict['A1'][0])))
+    elif 'A0' not in coo_srl_dict and 'A1' in coo_srl_dict and 'TMP' not in coo_srl_dict and 'LOC' not in coo_srl_dict:
+        if 'ADV' in coo_srl_dict:
+            coo_verb = coo_srl_dict['ADV'][0] + coo_verb
+        relation_list.append(tuple((core_subject, coo_verb, coo_srl_dict['A1'][0])))
     return relation_list
 
 
-def save_relation_to_db():
-    pass
+def save_relation_to_db(law_id, content_class, chapter_id, sentence_id, relation_list):
+    pool_conn = pool.connection()
+    cursor = pool_conn.cursor()
+    insert_sql = '''insert into single_extract_relation 
+                        (law_id, class, chapter_id, sentence_id, is_contain, subject, relation, object)
+                        value (%s, %s, %s, %s, %s, %s, %s, %s)'''
+    for relation in relation_list:
+        subject = relation[0]
+        relation_name = relation[1]
+        object = relation[2]
+        is_contain = 0
+        try:
+            cursor.execute(insert_sql, (law_id,
+                                        content_class,
+                                        chapter_id,
+                                        sentence_id,
+                                        is_contain,
+                                        subject,
+                                        relation_name,
+                                        object))
+            pool_conn.commit()
+            print(subject, relation_name, object, '--------saved--------')
+        except Exception as e:
+            pool_conn.rollback()
+            print('\033[1;32;41m' + relation + e + ': FAILED---------' + '\033[0m')
 
 
 def get_num_of_common_substr(str1, str2):
@@ -228,14 +279,15 @@ def get_num_of_common_substr(str1, str2):
 
 
 # 将抽取任务的不同组开启不同的线程
-def start_multiple_thread_to_extract(func_name, thread_num, extract_group):
+def start_multiple_thread_to_extract(func_name, thread_num, extract_group, lock):
     thread_pool = []
     for index in range(thread_num):
-        thread_pool.append(threading.Thread(target=func_name, args=(extract_group[index],)))
+        thread_pool.append(threading.Thread(target=func_name, args=(extract_group[index], lock)))
     for i in range(len(thread_pool)):
         thread_pool[i].start()
 
 
 if __name__ == '__main__':
+    lock = threading.Lock()
     extract_group = get_thread_extract_info(0, 4)
-    start_multiple_thread_to_extract(extract_task, 4, extract_group)
+    start_multiple_thread_to_extract(extract_task, 4, extract_group, lock)
