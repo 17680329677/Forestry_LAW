@@ -14,13 +14,14 @@ SELECT_SRL_SQL = '''select * from semantic_role_label_result
 
 
 # 获取多线程处理关系的分组信息---将要提取关系的待分析句子分为4组
-def get_thread_extract_info(from_sentence_id, thread_num):
+def get_thread_extract_info(from_sentence_id, thread_num, from_index, to_index):
     query_for_parse_sentence = '''select complete_sentence, parse_sentence, class, sentence_id 
                                   from dependency_parsing_result 
                                   where is_complex = 0 and sentence_id > %s group by parse_sentence order by id'''
     cursor = conn.cursor()
     cursor.execute(query_for_parse_sentence, (from_sentence_id,))
     parsing_sentences = cursor.fetchall()
+    parsing_sentences = parsing_sentences[from_index: to_index]
     extract_count = len(parsing_sentences)      # 获取总数
     print(extract_count)
     group_num = extract_count // thread_num     # 获取每个线程要处理的信息数
@@ -289,5 +290,5 @@ def start_multiple_thread_to_extract(func_name, thread_num, extract_group, lock)
 
 if __name__ == '__main__':
     lock = threading.Lock()
-    extract_group = get_thread_extract_info(0, 4)
+    extract_group = get_thread_extract_info(0, 4, 0, 5000)
     start_multiple_thread_to_extract(extract_task, 4, extract_group, lock)
