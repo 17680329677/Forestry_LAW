@@ -23,8 +23,8 @@ def xunfei_single_analysis_and_save(contents, dp_tags, sdp_tags, lock):
                 dp_info = time_control_method(dependency_parse, content, 'dp')  # 依存句法分析
                 # # [{'beg': 0, 'end': 1, 'id': 3, 'type': 'A0'}, {'beg': 4, 'end': 5, 'id': 3, 'type': 'A1'}]
                 srl_info = time_control_method(semantic_role_labeller, content, 'srl')  # 语义角色标注分析
-                sdgp_info = time_control_method(semantic_dependency_parse, content, 'sdgp')  # 语义依存分析
-                if words_list is None or postags_list is None or dp_info is None or srl_info is None or sdgp_info is None:
+                # sdgp_info = time_control_method(semantic_dependency_parse, content, 'sdgp')  # 语义依存分析
+                if words_list is None or postags_list is None or dp_info is None or srl_info is None:
                     continue
 
                 dp_result_list = []
@@ -55,39 +55,39 @@ def xunfei_single_analysis_and_save(contents, dp_tags, sdp_tags, lock):
                     # save_to_dependency_parsing_result(dp_result)
                     # print("%s -----(%s)---- %s" % (parent_word, reletion_name, child_word))
 
-                sdp_result_list = []
-                for sdp_index in range(len(sdgp_info)):
-                    sdp_parent_index = sdgp_info[sdp_index]['parent']
-                    if sdp_parent_index == -1:
-                        sdp_parent_word = 'Root'
-                    else:
-                        sdp_parent_word = words_list[sdp_parent_index]
-                    sdp_child_index = sdgp_info[sdp_index]['id']
-                    sdp_child_word = words_list[sdp_child_index]
-                    if sdgp_info[sdp_index]['relate'] in sdp_tags:
-                        semantic_dp_name = sdp_tags[sdgp_info[sdp_index]['relate']] + '-' + sdgp_info[index]['relate']
-                    elif str(sdgp_info[sdp_index]['relate']).startswith('r') \
-                            and str(sdgp_info[sdp_index]['relate'])[1:] in sdp_tags:
-                        main_relate = '' + str(sdgp_info[sdp_index]['relate'])[1:]
-                        semantic_dp_name = sdp_tags[main_relate] + '--反角色' + '-' + sdgp_info[index]['relate']
-                    elif str(sdgp_info[sdp_index]['relate']).startswith('d') \
-                            and str(sdgp_info[sdp_index]['relate'])[1:] in sdp_tags:
-                        main_relate = '' + str(sdgp_info[sdp_index]['relate'])[1:]
-                        semantic_dp_name = sdp_tags[main_relate] + '--嵌套角色' + '-' + sdgp_info[index]['relate']
-                    else:
-                        semantic_dp_name = sdgp_info[sdp_index]['relate'] + '-' + sdgp_info[index]['relate']
-                    # TODO: 将语义依存分析结果存入数据库
-                    sdp_result = [law_id,
-                                  article_class,
-                                  chapter_id,
-                                  sentence_id,
-                                  "".join(content_list),
-                                  content,
-                                  sdp_parent_word,
-                                  semantic_dp_name,
-                                  sdp_child_word,
-                                  is_complex]  # 是否是复杂句
-                    sdp_result_list.append(sdp_result)
+                # sdp_result_list = []
+                # for sdp_index in range(len(sdgp_info)):
+                #     sdp_parent_index = sdgp_info[sdp_index]['parent']
+                #     if sdp_parent_index == -1:
+                #         sdp_parent_word = 'Root'
+                #     else:
+                #         sdp_parent_word = words_list[sdp_parent_index]
+                #     sdp_child_index = sdgp_info[sdp_index]['id']
+                #     sdp_child_word = words_list[sdp_child_index]
+                #     if sdgp_info[sdp_index]['relate'] in sdp_tags:
+                #         semantic_dp_name = sdp_tags[sdgp_info[sdp_index]['relate']] + '-' + sdgp_info[index]['relate']
+                #     elif str(sdgp_info[sdp_index]['relate']).startswith('r') \
+                #             and str(sdgp_info[sdp_index]['relate'])[1:] in sdp_tags:
+                #         main_relate = '' + str(sdgp_info[sdp_index]['relate'])[1:]
+                #         semantic_dp_name = sdp_tags[main_relate] + '--反角色' + '-' + sdgp_info[index]['relate']
+                #     elif str(sdgp_info[sdp_index]['relate']).startswith('d') \
+                #             and str(sdgp_info[sdp_index]['relate'])[1:] in sdp_tags:
+                #         main_relate = '' + str(sdgp_info[sdp_index]['relate'])[1:]
+                #         semantic_dp_name = sdp_tags[main_relate] + '--嵌套角色' + '-' + sdgp_info[index]['relate']
+                #     else:
+                #         semantic_dp_name = sdgp_info[sdp_index]['relate'] + '-' + sdgp_info[index]['relate']
+                #     # TODO: 将语义依存分析结果存入数据库
+                #     sdp_result = [law_id,
+                #                   article_class,
+                #                   chapter_id,
+                #                   sentence_id,
+                #                   "".join(content_list),
+                #                   content,
+                #                   sdp_parent_word,
+                #                   semantic_dp_name,
+                #                   sdp_child_word,
+                #                   is_complex]  # 是否是复杂句
+                #     sdp_result_list.append(sdp_result)
                     # save_to_semantic_dependency_result(sdp_result)
                     # print("%s(%s)-----%s-----%s(%s)" % (
                     #     sdp_parent_word, postags_list[sdp_parent_index], semantic_dp_name, sdp_child_word,
@@ -120,7 +120,7 @@ def xunfei_single_analysis_and_save(contents, dp_tags, sdp_tags, lock):
                 print('=========================================================================================')
                 lock.acquire()
                 save_to_dependency_parsing_result(dp_result_list)
-                save_to_semantic_dependency_result(sdp_result_list)
+                # save_to_semantic_dependency_result(sdp_result_list)
                 save_to_semantic_role_label_result(role_label_result)
                 lock.release()
 
