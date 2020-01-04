@@ -87,16 +87,16 @@ def extract_task(extract_sentences, lock):
     for extract_sentence in extract_sentences:
         cursor.execute(SELECT_DP_SQL, (extract_sentence[1], extract_sentence[2], extract_sentence[3]))
         dp_results = cursor.fetchall()
-        cursor.execute(SELECT_SDP_SQL, (extract_sentence[1], extract_sentence[2], extract_sentence[3]))
-        sdp_results = cursor.fetchall()
+        # cursor.execute(SELECT_SDP_SQL, (extract_sentence[1], extract_sentence[2], extract_sentence[3]))
+        # sdp_results = cursor.fetchall()
         cursor.execute(SELECT_SRL_SQL, (extract_sentence[1], extract_sentence[2], extract_sentence[3]))
         srl_results = decode_srl_results(cursor.fetchall())
         # TODO：查询并分析DP、SDP、SRL分析结果
-        single_extract_core(dp_results, sdp_results, srl_results, lock)
+        single_extract_core(dp_results, srl_results, lock)
 
 
 # 分析关系的核心方法
-def single_extract_core(dp_results, sdp_results, srl_results, lock):
+def single_extract_core(dp_results, srl_results, lock):
     # 1. 找到核心动词 以及 与 核心动词并列的动词
     core_verb = None
     coo_verb_list = []
@@ -290,5 +290,5 @@ def start_multiple_thread_to_extract(func_name, thread_num, extract_group, lock)
 
 if __name__ == '__main__':
     lock = threading.Lock()
-    extract_group = get_thread_extract_info(0, 4, 30000, 58189)
+    extract_group = get_thread_extract_info(0, 4, 58189, 77240)
     start_multiple_thread_to_extract(extract_task, 4, extract_group, lock)
