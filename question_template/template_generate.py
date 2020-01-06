@@ -74,6 +74,6 @@ if __name__ == '__main__':
     train_file = "C:\\Users\\dhz\\Desktop\\template\\law_train"
     test_file = "C:\\Users\\dhz\\Desktop\\template\\law_test"
     dev_file = "C:\\Users\\dhz\\Desktop\\template\\law_dev"
-    bio_tag_generate(contents[0: 36000], train_file)
-    bio_tag_generate(contents[36000: 48000], test_file)
-    bio_tag_generate(contents[48000: 60000], dev_file)
+    bio_tag_generate(contents[0: 12000], train_file)
+    bio_tag_generate(contents[12000: 16000], test_file)
+    bio_tag_generate(contents[16000: 20000], dev_file)
