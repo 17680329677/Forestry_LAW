@@ -221,7 +221,7 @@ if __name__ == '__main__':
     dp_tags, sdp_tags = get_tags()
     sql_control_lock = threading.Lock()
     # article_1_single_contents = get_article_1_single_content()
-    article_2_single_contents = get_article_2_single_content(26500, 30000)
+    article_2_single_contents = get_article_2_single_content(30000, 35000)
     contents_group = single_content_group(article_2_single_contents, thread_num)
     start_multiple_thread_to_analysis(xunfei_single_analysis_and_save,
                                       thread_num,
