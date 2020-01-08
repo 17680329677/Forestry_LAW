@@ -290,5 +290,5 @@ def start_multiple_thread_to_extract(func_name, thread_num, extract_group, lock)
 
 if __name__ == '__main__':
     lock = threading.Lock()
-    extract_group = get_thread_extract_info(0, 4, 98482, 106539)
+    extract_group = get_thread_extract_info(0, 4, 98428, 106539)
     start_multiple_thread_to_extract(extract_task, 4, extract_group, lock)
