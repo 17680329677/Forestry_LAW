@@ -18,8 +18,32 @@ def get_single_relation():
         print("(law_id: %s | chapter_id: %s | sentence_id: %s)：%s" % (law_id, chapter_id, sentence_id, relation))
         if count > 1000:
             break
-    pass
+
+
+def get_single_relation_dict():
+    select_sql = '''select * from single_extract_relation where class = 1 order by sentence_id'''
+    cursor = conn.cursor()
+    cursor.execute(select_sql)
+    results = cursor.fetchall()
+    single_relation_dict = dict()
+    for res in results:
+        subject = res[6]
+        relation = res[7]
+        object = res[8]
+        if subject in single_relation_dict:
+            single_relation_dict[subject].append(subject + '--' + relation + '--' + object)
+        else:
+            single_relation_dict.update({subject: []})
+            single_relation_dict[subject].append(subject + '--' + relation + '--' + object)
+
+    output_file = "C:\\Users\\dhz\\Desktop\\template\\single_relation.txt"
+    with open(output_file, "a") as w:
+        for subject in single_relation_dict:
+            for rel in single_relation_dict[subject]:
+                w.write(rel + '\n')
+            w.write("============================================================================\n")
+    return single_relation_dict
 
 
 if __name__ == '__main__':
-    get_single_relation()
+    get_single_relation_dict()
