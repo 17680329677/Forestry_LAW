@@ -45,5 +45,37 @@ def get_single_relation_dict():
     return single_relation_dict
 
 
+def single_relation_merge():
+    cursor = conn.cursor()
+    select_sql = '''select law_id, 
+                           class, 
+                           chapter_id, 
+                           sentence_id, 
+                           is_contain, 
+                           subject, 
+                           relation, 
+                           object 
+                    from single_extract_relation_copy1'''
+    insert_sql = '''insert into single_extract_relation (law_id, 
+                                                         class, 
+                                                         chapter_id, 
+                                                         sentence_id, 
+                                                         is_contain, 
+                                                         subject, 
+                                                         relation,
+                                                         object)
+                     value (%s, %s, %s, %s, %s, %s, %s, %s)'''
+    cursor.execute(select_sql)
+    new_results = cursor.fetchall()
+    for res in new_results:
+        try:
+            cursor.execute(insert_sql, res)
+            print(res, '-------------insert success')
+            conn.commit()
+        except Exception as e:
+            conn.rollback()
+            print(res, e)
+
+
 if __name__ == '__main__':
-    get_single_relation_dict()
+    single_relation_merge()
