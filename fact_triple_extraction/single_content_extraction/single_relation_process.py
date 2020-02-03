@@ -1,6 +1,25 @@
 #!/usr/bin/env python
 # coding=utf-8
 from data_resource import conn
+import re
+# TODO: 将关系分类为以下几类
+# 1. 定义类
+# 2. 包含类
+# 3. 权利义务类
+# 4. 责任类
+# 5. 依据类
+# 6. 其他类
+
+
+def get_law_info_dict():
+    select_sql = '''select id, name from law'''
+    cursor = conn.cursor()
+    cursor.execute(select_sql)
+    law_info_dict = dict()
+    results = cursor.fetchall()
+    for res in results:
+        law_info_dict.update({res[0]: res[1]})
+    return law_info_dict
 
 
 def get_single_relation():
@@ -30,22 +49,37 @@ def get_single_relation_dict():
         subject = res[6]
         relation = res[7]
         object = res[8]
+        law_id = res[1]
         if subject in single_relation_dict:
             if subject is not object:
-                single_relation_dict[subject].append(subject + '--' + relation + '--' + object)
+                single_relation_dict[subject].append(tuple((law_id, subject, relation, object)))
         else:
             if subject is not object:
                 single_relation_dict.update({subject: []})
-                single_relation_dict[subject].append(subject + '--' + relation + '--' + object)
+                single_relation_dict[subject].append(tuple((law_id, subject, relation, object)))
 
-    output_file = "C:\\Users\\dhz\\Desktop\\template\\single_relation.txt"
-    with open(output_file, "a") as w:
-        for subject in single_relation_dict:
-            for rel in single_relation_dict[subject]:
-                w.write(rel + '\n')
-            w.write("============================================================================\n")
+    # output_file = "C:\\Users\\dhz\\Desktop\\template\\single_relation.txt"
+    # with open(output_file, "a") as w:
+    #     for subject in single_relation_dict:
+    #         for rel in single_relation_dict[subject]:
+    #             w.write(rel + '\n')
+    #         w.write("============================================================================\n")
     return single_relation_dict
 
 
+def single_relation_process(single_relation_dict):
+    province_pattern = "^本省(.*)"
+    city_pattern = "^本市(.*)"
+    other_pattern = "^本(.*)"
+    define_count = 0
+    for sub in single_relation_dict:
+        for relation in single_relation_dict[sub]:
+            if relation[2] == '是' or relation[2] == '是指':
+                define_count = define_count + 1
+                print(relation)
+    print(define_count)
+
+
 if __name__ == '__main__':
-    get_single_relation_dict()
+    single_relation_dict = get_single_relation_dict()
+    single_relation_process(single_relation_dict)
