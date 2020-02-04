@@ -1,7 +1,20 @@
 #!/usr/bin/env python
 # coding=utf-8
 from data_resource import conn
+from pyltp import Parser, SentenceSplitter, Segmentor, Postagger
 import re
+
+SINGLE_RELATION_CLASS = ['define', 'contain', 'duty', 'accord', 'right_and_obligations']
+
+MODEL_DIR_PATH = "F:\\ltp_data_v3.4.0\\"
+SEGMENTOR_MODEL = MODEL_DIR_PATH + "cws.model"  # LTP分词模型库
+POSTAGGER_MODEL = MODEL_DIR_PATH + "pos.model"  # LTP词性标注模型库
+
+segmentor = Segmentor()  # 初始化分词实例
+postagger = Postagger()  # 初始化词性标注实例
+
+segmentor.load(SEGMENTOR_MODEL)     # 加载分词模型库
+postagger.load(POSTAGGER_MODEL)     # 加载词性标注模型库
 
 
 def get_law_info_dict():
@@ -70,10 +83,6 @@ def get_single_relation_dict():
 # 5. 依据类
 # 6. 其他类
 def single_relation_classify(single_relation_dict):
-    province_pattern = "^本省(.*)"
-    city_pattern = "^本市(.*)"
-    other_pattern = "^本(.*)"
-
     classify_results = {
         'define': [],
         'contain': [],
@@ -93,7 +102,7 @@ def single_relation_classify(single_relation_dict):
                 if len(relation[1]) > 1:
                     classify_results['contain'].append(relation)
             # 3. 责任类
-            elif '责任' in relation[2] or '负责' in relation[2]:
+            elif '责任' in relation[2] or '负责' in relation[2] or '负' in relation[2]:
                 if len(relation[1]) > 1:
                     classify_results['duty'].append(relation)
             # 4. 依据类
@@ -108,7 +117,7 @@ def single_relation_classify(single_relation_dict):
 
 
 # TODO: 添加生效流程一项
-def single_relation_process(classify_results):
+def single_relation_save(classify_results):
     output_file = "C:\\Users\\dhz\\Desktop\\template\\classify_results.txt"
     cursor = conn.cursor()
     with open(output_file, "a") as w:
@@ -125,7 +134,181 @@ def single_relation_process(classify_results):
                 conn.commit()
 
 
+# 实体对齐和清洗
+def entity_aligament_and_wash():
+    province_pattern = "^本省(.*)"
+    city_pattern = "^本市(.*)"
+    other_pattern = "^本[办法|条例|法|规划|规定|补充规定|规则](.*)"
+    cursor = conn.cursor()
+    wash_set = {
+        'province': [],
+        'city': [],
+        'other': []
+    }
+    for type in SINGLE_RELATION_CLASS:
+        select_sql = 'select * from %s' % type + '_relation'
+        cursor.execute(select_sql)
+        results = cursor.fetchall()
+        for res in results:
+            subject = res[4]
+            province_res = re.search(province_pattern, subject, re.M | re.I)
+            city_res = re.search(city_pattern, subject, re.M | re.I)
+            other_res = re.search(other_pattern, subject, re.M | re.I)
+            if province_res and not city_res and not other_res:
+                wash_set['province'].append(res)
+            elif city_res and not province_res and not other_res:
+                wash_set['city'].append(res)
+            elif other_res and not province_res and not city_res:
+                wash_set['other'].append(res)
+    return wash_set
+
+
+def entity_aligament_and_wash_core(data_set):
+    query_for_law_sql = '''select id, name, location, location_code, location_level, province_code from law where id = %s'''
+    cursor = conn.cursor()
+    # 1. 处理省份
+    for relation in data_set['province']:
+        id = relation[0]
+        law_id = relation[1]
+        class_type = relation[7]
+        table_name = class_type + '_relation'
+        update_sql = 'update %s ' % table_name + \
+                     'set subject = %s, province_code = %s, province_name = %s, state = %s where id = %s'
+        subject = str(relation[4]).replace('本省', '')
+        cursor.execute(query_for_law_sql, (law_id,))
+        law_info = cursor.fetchone()
+        if subject == '' or subject is None:
+            subject = law_info[2]
+        province_name = law_info[2]
+        province_code = law_info[5]
+        state = 'province'
+        cursor.execute(update_sql, (subject, province_code, province_name, state, id))
+        conn.commit()
+        print(id)
+
+    # 2. 处理城市
+    for relation in data_set['city']:
+        id = relation[0]
+        law_id = relation[1]
+        class_type = relation[7]
+        table_name = class_type + '_relation'
+        update_sql = 'update %s ' % table_name + \
+                     'set subject = %s, city_code = %s, city_name = %s, state = %s where id = %s'
+        subject = str(relation[4]).replace('本市', '')
+        cursor.execute(query_for_law_sql, (law_id,))
+        law_info = cursor.fetchone()
+        if subject == '' or subject is None:
+            subject = law_info[2]
+        city_name = law_info[2]
+        city_code = law_info[3]
+        state = 'city'
+        cursor.execute(update_sql, (subject, city_code, city_name, state, id))
+        conn.commit()
+        print(class_type, id)
+
+    # 3. 处理其他
+    validate_words = ['本办法', '本条例', '本法', '本规划', '本规定', '本补充规定', '本规则']
+    for relation in data_set['other']:
+        id = relation[0]
+        law_id = relation[1]
+        class_type = relation[7]
+        table_name = class_type + '_relation'
+        update_sql = 'update %s ' % table_name + \
+                     'set subject = %s, province_code = %s, province_name = %s,' \
+                     ' city_code = %s, city_name = %s, state = %s where id = %s'
+        for word in validate_words:
+            if word in relation[4]:
+                subject = str(relation[4]).replace(word, '')
+                cursor.execute(query_for_law_sql, (law_id,))
+                law_info = cursor.fetchone()
+                if subject == '' or subject is None:
+                    subject = law_info[1]
+
+                location_level = law_info[4]
+                if location_level == '1':
+                    state = 'country'
+                    province_code = 000000
+                    city_code = 000000
+                    province_name = '中华人民共和国'
+                    city_name = '中华人民共和国'
+                elif location_level == '2':
+                    state = 'province'
+                    province_code = law_info[5]
+                    city_code = law_info[5]
+                    province_name = law_info[2]
+                    city_name = law_info[2]
+                elif location_level == '3':
+                    state = 'city'
+                    province_code = law_info[5]
+                    city_code = law_info[3]
+                    province_name = law_info[2]
+                    city_name = law_info[2]
+                else:
+                    province_code = ''
+                    city_code = ''
+                    province_name = ''
+                    city_name = ''
+                    state = ''
+                cursor.execute(update_sql, (subject, province_code, province_name, city_code, city_name, state, id))
+                conn.commit()
+                print(class_type, id)
+
+
+def update_all_location_info():
+    cursor = conn.cursor()
+    query_for_law_sql = '''select id, name, location, location_code, location_level, province_code 
+                           from law where id = %s'''
+    for class_type in SINGLE_RELATION_CLASS:
+        table_name = class_type + '_relation'
+        select_sql = 'select * from %s ' % table_name + 'where ISNULL(state)=1'
+        cursor.execute(select_sql)
+        results = cursor.fetchall()
+        for relation in results:
+            id = relation[0]
+            law_id = relation[1]
+            class_type = relation[7]
+            table_name = class_type + '_relation'
+            update_sql = 'update %s ' % table_name + \
+                         'set subject = %s, province_code = %s, province_name = %s,' \
+                         ' city_code = %s, city_name = %s, state = %s where id = %s'
+            subject = relation[4]
+            cursor.execute(query_for_law_sql, (law_id,))
+            law_info = cursor.fetchone()
+
+            location_level = law_info[4]
+            if location_level == '1':
+                state = 'country'
+                province_code = 000000
+                city_code = 000000
+                province_name = '中华人民共和国'
+                city_name = '中华人民共和国'
+            elif location_level == '2':
+                state = 'province'
+                province_code = law_info[5]
+                city_code = law_info[5]
+                province_name = law_info[2]
+                city_name = law_info[2]
+            elif location_level == '3':
+                state = 'city'
+                province_code = law_info[5]
+                city_code = law_info[3]
+                province_name = law_info[2]
+                city_name = law_info[2]
+            else:
+                province_code = ''
+                city_code = ''
+                province_name = ''
+                city_name = ''
+                state = ''
+            cursor.execute(update_sql, (subject, province_code, province_name, city_code, city_name, state, id))
+            conn.commit()
+            print(class_type, id)
+
+
 if __name__ == '__main__':
-    single_relation_dict = get_single_relation_dict()
-    classify_results = single_relation_classify(single_relation_dict)
-    single_relation_process(classify_results)
+    # single_relation_dict = get_single_relation_dict()
+    # classify_results = single_relation_classify(single_relation_dict)
+    # single_relation_save(classify_results)
+    # data_set = entity_aligament_and_wash()
+    # entity_aligament_and_wash_core(data_set)
+    update_all_location_info()
