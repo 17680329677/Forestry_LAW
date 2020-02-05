@@ -305,10 +305,32 @@ def update_all_location_info():
             print(class_type, id)
 
 
+def subject_wash():
+    cursor = conn.cursor()
+    for class_type in SINGLE_RELATION_CLASS:
+        table_name = class_type + '_relation'
+        select_sql = 'select * from %s' % table_name
+        cursor.execute(select_sql)
+        results = cursor.fetchall()
+        update_sql = 'update %s ' % table_name + 'set subject = %s where id = %s'
+        for relation in results:
+            id = relation[0]
+            subject = relation[4]
+            if str(subject).startswith('由'):
+                subject = str(subject).replace('由', '')
+                print(class_type, id, subject)
+            elif len(subject) > 2 and subject[0] == subject[1] and subject[0] != '1' and subject[0] != 1:
+                subject = str(subject)[1:]
+                print(class_type, id, subject)
+            # cursor.execute(update_sql, (subject, id))
+            # conn.commit()
+
+
 if __name__ == '__main__':
     # single_relation_dict = get_single_relation_dict()
     # classify_results = single_relation_classify(single_relation_dict)
     # single_relation_save(classify_results)
     # data_set = entity_aligament_and_wash()
     # entity_aligament_and_wash_core(data_set)
-    update_all_location_info()
+    # update_all_location_info()
+    subject_wash()
