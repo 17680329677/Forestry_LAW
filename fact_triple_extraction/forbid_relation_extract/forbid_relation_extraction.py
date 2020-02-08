@@ -173,8 +173,72 @@ def forbid_act_save(forbid_list_1, forbid_list_2, forbid_list_3):
         print(forbid_act)
 
 
+def forbid_1_wash():
+    select_sql = '''select * from forbid_1'''
+    update_sql = '''update forbid_1 set forbid_subject = %s where id = %s'''
+    CURSOR.execute(select_sql)
+    results = CURSOR.fetchall()
+    for res in results:
+        id = res[0]
+        forbid_subject = str(res[4]).strip()
+        if forbid_subject.startswith('在'):
+            forbid_subject = forbid_subject[1:]
+        CURSOR.execute(update_sql, (forbid_subject, id))
+        conn.commit()
+        print(id, forbid_subject)
+
+
+def update_forestry_subject():
+    query_forestry_subject = '''select * from forestry_subject'''
+    query_forbid_1 = '''select forbid_subject from forbid_1 group by forbid_subject'''
+    insert_sql = '''insert into forestry_subject (subject) value (%s)'''
+    subject_list = []
+    CURSOR.execute(query_forestry_subject)
+    forestry_subjects = CURSOR.fetchall()
+    for subject in forestry_subjects:
+        subject_list.append(subject[1])
+    CURSOR.execute(query_forbid_1)
+    results = CURSOR.fetchall()
+    for res in results:
+        if res[0] in subject_list:
+            continue
+        else:
+            subject_list.append(res[0])
+            CURSOR.execute(insert_sql, (res[0],))
+            conn.commit()
+            print(res[0])
+
+
+def merge_forbid_action():
+    select_fobid_2 = '''select law_id, chapter_id, sentence_id, forbid_subject from forbid_2 
+                        GROUP BY law_id, forbid_subject, chapter_id, sentence_id'''
+    select_forbid_3 = '''select law_id, chapter_id, sentence_id, forbid_action from forbid_3'''
+    insert_sql = '''insert into forbid_action (law_id, chapter_id, sentence_id, forbid_action) value (%s, %s, %s, %s)'''
+    CURSOR.execute(select_fobid_2)
+    results_2 = CURSOR.fetchall()
+    for res in results_2:
+        law_id = res[0]
+        chapter_id = res[1]
+        sentence_id = res[2]
+        forbid_action = res[3]
+        CURSOR.execute(insert_sql, (law_id, chapter_id, sentence_id, forbid_action))
+        conn.commit()
+    CURSOR.execute(select_forbid_3)
+    results_3 = CURSOR.fetchall()
+    for res in results_3:
+        law_id = res[0]
+        chapter_id = res[1]
+        sentence_id = res[2]
+        forbid_action = res[3]
+        CURSOR.execute(insert_sql, (law_id, chapter_id, sentence_id, forbid_action))
+        conn.commit()
+
+
 if __name__ == '__main__':
-    results_1 = get_article_1_content()
-    results_2 = get_article_2_content()
-    forbid_list_1, forbid_list_2, forbid_list_3 = forbid_relation_extract_core(results_2)
-    forbid_act_save(forbid_list_1, forbid_list_2, forbid_list_3)
+    # results_1 = get_article_1_content()
+    # results_2 = get_article_2_content()
+    # forbid_list_1, forbid_list_2, forbid_list_3 = forbid_relation_extract_core(results_2)
+    # forbid_act_save(forbid_list_1, forbid_list_2, forbid_list_3)
+    # forbid_1_wash()
+    # update_forestry_subject()
+    merge_forbid_action()
