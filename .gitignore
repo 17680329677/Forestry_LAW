@@ -7,3 +7,4 @@
 *.ipr
 
 nsqd*
+model/

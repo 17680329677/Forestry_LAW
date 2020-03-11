@@ -1,7 +1,7 @@
 from graphviz import Digraph
 from pyltp import Parser, SentenceSplitter, Segmentor, Postagger
 
-MODEL_DIR_PATH = "E:\\ltp_data_v3.4.0\\"
+MODEL_DIR_PATH = "F:\\ltp_data_v3.4.0\\"
 SEGMENTOR_MODEL = MODEL_DIR_PATH + "cws.model"  # LTP分词模型库
 POSTAGGER_MODEL = MODEL_DIR_PATH + "pos.model"  # LTP词性标注模型库
 PARSER_MODEL = MODEL_DIR_PATH + "parser.model"  # LTP依存分析模型库
@@ -22,6 +22,10 @@ def syntactic_test():
     sentence = "县级以上人民政府应当科学合理地划定湿地生态红线，确保湿地生态功能不降低、面积不减少、性质不改变"
     sentence = "因保护湿地给湿地所有者或者经营者合法权益造成损失的，应当依法给予补偿。"
     sentence = "任何单位和个人不得在城市绿线范围内进行拦河截溪、取土采石、设置垃圾堆场、排放污水以及其他对生态环境构成破坏的活动。"
+    sentence = "各级林业主管部门负责木材经营加工的管理和监督。"
+    sentence = "省环境保护行政主管部门根据保护农业生态环境的需要，制定地方农业生态环境标准。"
+    sentence = "植保植检站是本市农业植物检疫机构, 负责本市农业植物检疫工作。"
+    sentence = "城市绿化行政主管部门根据市区两级绿化管养分工，负责行政区域内的绿化管理工作。"
     words = list(segmentor.segment(sentence))  # 分词
     postags = list(postagger.postag(words))  # 词性标注
     arcs = parser.parse(words, postags)  # 依存句法分析

@@ -182,10 +182,12 @@ def tag_generate1(unit_list, park_list, forestry_list, output_file):
 def tag_generate2(forestry_list, output_file):
     # unit_template_list = ['%s的职责是什么？']
     # park_template_list = ['%s有什么禁止的行为？', '在%s有什么被禁止的行为？']
-    normal_template_list = ['%s是什么？',  '%s包括什么？', '%s的职责是什么？',
+    normal_template_list = ['%s的定义是什么？',  '%s包括什么？', '%s的职责是什么？',
                             '%s有什么权利和义务？', '在%s有什么被禁止的行为？']
     with open(output_file, "a") as w:
         for forestry in forestry_list:
+            B_name = ' B-FOREST'
+            I_name = ' I-FOREST'
             for template in normal_template_list:
                 question = template % forestry
                 start = question.index(forestry)
@@ -193,9 +195,9 @@ def tag_generate2(forestry_list, output_file):
                 for index in range(len(question)):
                     if index >= start and index < end:
                         if index == start:
-                            w.write(question[index] + ' B-FOREST\n')
+                            w.write(question[index] + B_name + '\n')
                         else:
-                            w.write(question[index] + ' I-FOREST\n')
+                            w.write(question[index] + I_name + '\n')
                     else:
                         w.write(question[index] + ' O\n')
 
@@ -215,7 +217,7 @@ if __name__ == '__main__':
     #               park_list[200:250],
     #               forestry_list[9600:12000],
     #               r"C:\Users\dhz\Desktop\template\law_test1")
-    print(len(forestry_list))
-    forestry_list = list(set(forestry_list).union(set(park_list)).union(set(unit_list)))
-    print(len(forestry_list))
-    tag_generate2(forestry_list[10500:13000], r"C:\Users\dhz\Desktop\template\law_test2")
+
+    # forestry_list = list(set(forestry_list).union(set(park_list)).union(set(unit_list)))
+    # print(len(forestry_list))
+    tag_generate2(forestry_list[9600:11600], r"C:\Users\dhz\Desktop\template\law_test2")

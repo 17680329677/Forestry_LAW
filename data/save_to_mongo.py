@@ -17,7 +17,7 @@ def save_to_mongo(law_content):
 
 
 if __name__ == '__main__':
-    dir_path = "C:\\Users\\dhz1216\\Desktop\\wenben"
+    dir_path = "C:\\Users\\dhz\\Desktop\\wenben"
     for file in os.listdir(dir_path):
         law_content = law_parse(dir_path + "\\" + file)
         save_to_mongo(law_content)
