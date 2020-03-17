@@ -6,6 +6,7 @@ from gensim.models import Word2Vec
 from data_resource import conn
 import multiprocessing
 import re
+import numpy
 
 
 MODEL_DIR_PATH = "F:\\ltp_data_v3.4.0\\"
@@ -88,10 +89,60 @@ def word_embedding_train():
     model.wv.save_word2vec_format('word2vec', binary=False)
 
 
+def dp_based_similarity_core():
+    cursor = conn.cursor()
+    model = Word2Vec.load('../model/forestry_law.model')
+    cn_reg = '^[\u4e00-\u9fa5]+$'
+    select_sql = '''select * from dependency_parsing_result where parse_sentence = %s'''
+    sentence1 = '各级林业主管部门负责木材经营加工的管理和监督。'
+    sentence2 = '市园林主管部门应负责组织城市园林病虫害防治工作。'
+    sentence2 = '市园林主管部门负责监督和技术指导。'
+    sentence2 = '没有违法所得或者违法所得不足三万元的，并处三千元以上三万元以下罚款。'
+    cursor.execute(select_sql, (sentence1,))
+    res1 = cursor.fetchall()
+    group1 = []
+    group2 = []
+    for res in res1:
+        front_word = res[7]
+        relation = res[8]
+        tail_word = res[9]
+        if re.search(cn_reg, front_word) and re.search(cn_reg, tail_word):
+            group1.append(tuple((front_word, relation, tail_word)))
+        else:
+            continue
+
+    cursor.execute(select_sql, (sentence2,))
+    res2 = cursor.fetchall()
+    for res in res2:
+        front_word = res[7]
+        relation = res[8]
+        tail_word = res[9]
+        if re.search(cn_reg, front_word) and re.search(cn_reg, tail_word):
+            group2.append(tuple((front_word, relation, tail_word)))
+        else:
+            continue
+    max_len = max(len(group1), len(group2))
+    print(max_len)
+    sim_score = 0
+    for pair1 in group1:
+        for pair2 in group2:
+            if pair1[1] == pair2[1]:
+                if model[pair1[0]].any() and model[pair1[2]].any() and model[pair2[0]].any() and model[pair2[2]].any():
+                    sim1 = model.similarity(pair1[0], pair2[0])
+                    sim2 = model.similarity(pair1[2], pair2[2])
+                    print(sim1)
+                    print(sim2)
+                    print('-----------------------------')
+                    if sim1 > 0.35 and sim2 > 0.35:
+                        sim_score = sim_score + 0.7*((sim1 + sim2)/2)/max_len
+    print(sim_score)
+
+
 if __name__ == '__main__':
     # sentences_wash()
     # word_embedding_train()
-    model = Word2Vec.load('../model/forestry_law.model')
-    print(model.similarity('公益林', '防护林'))
-    print(model.similarity('园林局', '林业局'))
+    # model = Word2Vec.load('../model/forestry_law.model')
+    # print(model.similarity('公益林', '防护林'))
+    # print(model.similarity('园林局', '林业局'))
     # read_news()
+    dp_based_similarity_core()
