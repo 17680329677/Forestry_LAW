@@ -61,7 +61,7 @@ if __name__ == '__main__':
     # init_relation_collection('parse_sentence', '负责', 'duty', 64)
 
     # 6.权利与义务 TODO：**************************************************
-    init_relation_collection('parse_sentence', '有权', 'right', 34)
+    init_relation_collection('parse_sentence', '有权', '', 34)
     init_relation_collection('parse_sentence', '有义务', 'right', 4)
 
     # 7.依据
