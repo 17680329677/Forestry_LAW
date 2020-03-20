@@ -167,42 +167,42 @@ if __name__ == '__main__':
     # get_parse_sentences()
     count = 0
     # 1.定义、解释
-    count = count + relation_collection_expand('verb', '是', 'define')
-    count = count + relation_collection_expand('verb', '指', 'define')
+    # count = count + relation_collection_expand('verb', '是', 'define')
+    # count = count + relation_collection_expand('verb', '指', 'define')
 
     # 2.目标、目的
-    count = count + relation_collection_expand('parse_sentence', '为了', 'aim')
-    count = count + relation_collection_expand('parse_sentence', '为目标', 'aim')
-    count = count + relation_collection_expand('parse_sentence', '目标为', 'aim')
-    count = count + relation_collection_expand('parse_sentence', '目标是', 'aim')
+    # count = count + relation_collection_expand('parse_sentence', '为了', 'aim')
+    # count = count + relation_collection_expand('parse_sentence', '为目标', 'aim')
+    # count = count + relation_collection_expand('parse_sentence', '目标为', 'aim')
+    # count = count + relation_collection_expand('parse_sentence', '目标是', 'aim')
 
     # 3.适用范围
-    count = count + relation_collection_expand('parse_sentence', '适用', 'application_scope')
+    # count = count + relation_collection_expand('parse_sentence', '适用', 'application_scope')
 
     # 4.包含
-    count = count + relation_collection_expand('parse_sentence', '分为', 'contain')
-    count = count + relation_collection_expand('parse_sentence', '包括', 'contain')
+    # count = count + relation_collection_expand('parse_sentence', '分为', 'contain')
+    # count = count + relation_collection_expand('parse_sentence', '包括', 'contain')
 
     # 5.责任
-    count = count + relation_collection_expand('parse_sentence', '应当', 'duty')
-    count = count + relation_collection_expand('parse_sentence', '负责', 'duty')
+    # count = count + relation_collection_expand('parse_sentence', '应当', 'duty')
+    # count = count + relation_collection_expand('parse_sentence', '负责', 'duty')
 
     # 6.权利与义务 TODO：**************************************************
-    count = count + relation_collection_expand('parse_sentence', '有权', 'right')
-    count = count + relation_collection_expand('parse_sentence', '有义务', 'right')
+    # count = count + relation_collection_expand('parse_sentence', '有权', 'right')
+    # count = count + relation_collection_expand('parse_sentence', '有义务', 'right')
 
     # 7.依据
-    count = count + relation_collection_expand('parse_sentence', '按照', 'accord')
-    count = count + relation_collection_expand('parse_sentence', '根据', 'accord')
-    count = count + relation_collection_expand('parse_sentence', '依据', 'accord')
+    # count = count + relation_collection_expand('parse_sentence', '按照', 'accord')
+    # count = count + relation_collection_expand('parse_sentence', '根据', 'accord')
+    # count = count + relation_collection_expand('parse_sentence', '依据', 'accord')
 
     # 8.令行禁止
-    count = count + relation_collection_expand('parse_sentence', '禁止', 'fobid')
-    count = count + relation_collection_expand('parse_sentence', '严禁', 'fobid')
-    count = count + relation_collection_expand('parse_sentence', '不得', 'fobid')
-    count = count + relation_collection_expand('parse_sentence', '不允许', 'fobid')
+    count = count + relation_collection_expand('parse_sentence', '禁止', 'forbid')
+    count = count + relation_collection_expand('parse_sentence', '严禁', 'forbid')
+    count = count + relation_collection_expand('parse_sentence', '不得', 'forbid')
+    count = count + relation_collection_expand('parse_sentence', '不允许', 'forbid')
 
     # 9.违反与处罚
-    count = count + relation_collection_expand('verb', '处', 'punishment')
-    count = count + relation_collection_expand('verb', '违反', 'punishment')
-    print(count)
+    # count = count + relation_collection_expand('verb', '处', 'punishment')
+    # count = count + relation_collection_expand('verb', '违反', 'punishment')
+    # print(count)

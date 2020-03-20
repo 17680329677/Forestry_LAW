@@ -5,6 +5,19 @@ from data_resource import conn
 import re
 
 
+def accord_wash(accord):
+    if str(accord).startswith('根据') or str(accord).startswith('按照') or str(accord).startswith('依据'):
+        accord = accord[2:]
+    elif str(accord).startswith('按'):
+        accord = accord[1:]
+    elif str(accord).startswith('不按照'):
+        accord = accord[3:]
+
+    if str(accord).endswith('，'):
+        accord = accord[:-1]
+    return accord
+
+
 def accord_relation_extract(accord_relation_collect, relation_type):
     cursor = conn.cursor()
     special_reg = "[\s+\.\!\/_,$%^*(+\"\')]+|[+——()?【】“”《》〔〕：；！，。？、~@#￥%……&*（）]+"
@@ -46,7 +59,6 @@ def accord_relation_extract(accord_relation_collect, relation_type):
             # 依据关系抽取核心
             accord_relation_list = []
             core_verb = find_core_verb(dp_results)
-            print(parse_sentence)
             for verb in verb_srl_dict:
                 sub = None
                 obj = None
@@ -64,33 +76,46 @@ def accord_relation_extract(accord_relation_collect, relation_type):
                     if 'A0' in verb_srl_dict[verb] and 'A1' in verb_srl_dict[verb] and len(verb_srl_dict[verb]['MNR'][0]) > 2:
                         for a1 in verb_srl_dict[verb]['A1']:
                             subject = verb_srl_dict[verb]['A0'][0] + ' ' + verb + ' ' + a1
-                            object =  verb_srl_dict[verb]['MNR'][0]
+                            object = verb_srl_dict[verb]['MNR'][0]
+                            object = accord_wash(object)
                             accord_relation_list.append(tuple((subject, 'accord', object)))
                     elif 'A0' not in verb_srl_dict[verb] and 'A1' in verb_srl_dict[verb] and sub is not None and len(verb_srl_dict[verb]['MNR'][0]) > 2:
                         for a1 in verb_srl_dict[verb]['A1']:
                             subject = sub + ' ' + verb + ' ' + a1
                             object =  verb_srl_dict[verb]['MNR'][0]
+                            object = accord_wash(object)
                             accord_relation_list.append(tuple((subject, 'accord', object)))
                     elif 'A0' not in verb_srl_dict[verb] and 'A1' in verb_srl_dict[verb] and sub is None and len(verb_srl_dict[verb]['MNR'][0]) > 2:
                         for a1 in verb_srl_dict[verb]['A1']:
                             subject = verb + ' ' + a1
                             object = verb_srl_dict[verb]['MNR'][0]
+                            object = accord_wash(object)
                             accord_relation_list.append(tuple((subject, 'accord', object)))
                     elif 'A0' not in verb_srl_dict[verb] and 'A1' not in verb_srl_dict[verb] and sub is not None and obj is not None and len(verb_srl_dict[verb]['MNR'][0]) > 2:
                         subject = sub + ' ' + verb + ' ' + obj
                         object = verb_srl_dict[verb]['MNR'][0]
+                        object = accord_wash(object)
                         accord_relation_list.append(tuple((subject, 'accord', object)))
                     elif 'A0' not in verb_srl_dict[verb] and 'A1' not in verb_srl_dict[verb] and sub is None and obj is not None and len(verb_srl_dict[verb]['MNR'][0]) > 2:
                         subject = verb + ' ' + obj
                         object = verb_srl_dict[verb]['MNR'][0]
+                        object = accord_wash(object)
                         accord_relation_list.append(tuple((subject, 'accord', object)))
                 else:
                     continue
             if len(accord_relation_list) > 0:
                 extract_num = extract_num + 1
-                print(parse_sentence)
                 for rel in accord_relation_list:
-                    print(rel)
+                    data = {
+                        'law_id': law_id,
+                        'chapter_id': chapter_id,
+                        'sentence_id': sentence_id,
+                        'parse_sentence': parse_sentence,
+                        'subject': rel[0],
+                        'relation': '依据/标准',
+                        'object': rel[2],
+                    }
+                    save_relation(relation_type, data)
                 print('\n*************************************************************************************\n')
     print("totle: %s \n extract: %s \n rate: %s" % (collect_num, extract_num, extract_num / collect_num))
 

@@ -172,4 +172,6 @@ if __name__ == '__main__':
     #     relation_collect = get_relation_collect(relation_type)
     #     parsing_and_semantic_analysis(relation_type, relation_collect)
     #     print(relation_type, 'finish')
-    pass
+    relation_collect = get_relation_collect('forbid')
+    parsing_and_semantic_analysis('forbid', relation_collect)
+    print('forbid', 'finish')
