@@ -26,6 +26,9 @@ def syntactic_test():
     sentence = "省环境保护行政主管部门根据保护农业生态环境的需要，制定地方农业生态环境标准。"
     sentence = "植保植检站是本市农业植物检疫机构, 负责本市农业植物检疫工作。"
     sentence = "城市绿化行政主管部门根据市区两级绿化管养分工，负责行政区域内的绿化管理工作。"
+    sentence = "镇人民政府负责本辖区的农业环境质量。"
+    sentence = "《良种壮苗合格证》应当存入造林单位的造林档案。"
+    sentence = "国有建设用地应当实行有偿使用。"
     words = list(segmentor.segment(sentence))  # 分词
     postags = list(postagger.postag(words))  # 词性标注
     arcs = parser.parse(words, postags)  # 依存句法分析
