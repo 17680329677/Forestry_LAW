@@ -16,6 +16,10 @@ SEGMENTOR_MODEL = MODEL_DIR_PATH + "cws.model"  # LTP分词模型库
 segmentor = Segmentor()  # 初始化分词实例
 segmentor.load(SEGMENTOR_MODEL)     # 加载分词模型库
 
+print('--开始加载词向量模型--')
+model = Word2Vec.load('../model/forestry_law.model')
+print('--词向量模型加载完毕--')
+
 
 def get_template_and_segment(user_question):
     cn_reg = '^[\u4e00-\u9fa5]+$'
@@ -54,11 +58,7 @@ def calculate_tf_idf(segment_results):
     return word, weight
 
 
-def calculate_question_vec(segment_result, word, weight):
-    print('--开始加载模型--')
-    model = Word2Vec.load('../model/forestry_law.model')
-    print('--模型加载完毕--')
-
+def calculate_question_vec(segment_results, word, weight):
     vec_dict = {}
     for sentence_index in range(len(segment_results)):
         # print(weight[sentence_index])
@@ -106,8 +106,9 @@ def calculate_sim(vec_dict, template_results):
 
     sim_res = sorted(sim_dict.items(), key=lambda x: x[1], reverse=True)
     template_num = sim_res[0][0]
-    print("匹配的模板为：", template_results[template_num][1])
-    print("问句中涉及的关系是：", template_results[template_num][2])
+    match_template = template_results[template_num][1]
+    relation_type = template_results[template_num][2]
+    return match_template, relation_type
 
 
 if __name__ == '__main__':
