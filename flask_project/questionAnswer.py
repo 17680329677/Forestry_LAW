@@ -23,18 +23,20 @@ def question():
         entity = result_json['data']['entities'][0]['word']
         valid_entity_list = re.findall(r'[\u4e00-\u9fa5]', entity)
         entity = ''.join(valid_entity_list)
-        user_question = str(question).replace(entity, ' $' + entity_type)
+        linked_entity = ''
+        entity_query_cql = "match (e:forestry_subject) where e.name='%s' return e" % (entity, )
+        entity_query_res = graph.run(entity_query_cql).data()
+        if entity_query_res is not None and len(entity_query_res) > 0:
+            linked_entity = entity
+        else:
+            # TODO： 实体链接
+            print("实体链接已触发")
+            entity_segment_results, entity_results = get_entity_and_segment(entity)
+            entity_word, entity_weight = calculate_tf_idf(entity_segment_results)
+            entity_vec_dict = calculate_question_vec(entity_segment_results, entity_word, entity_weight)
+            linked_entity = entity_link(entity_vec_dict, entity_results)
 
-        # 实体链接
-        # query_subject = "match p=(a:forestry_subject) return a.name"
-        # entity_list = graph.run(query_subject).data()
-        # sim_dict = {}
-        # for e in entity_list:
-        #     sim_tmp = model.similarity(e['a.name'], entity)
-        #     sim_dict.update({e['a.name']: sim_tmp})
-        # sim_res = sorted(sim_dict.items(), key=lambda x: x[1], reverse=True)
-        # for s in sim_res:
-        #     print(s)
+        user_question = str(question).replace(entity, ' $' + entity_type)
 
         # 问句模板匹配及关系识别
         segment_results, template_results = get_template_and_segment(user_question)
@@ -42,7 +44,7 @@ def question():
         vec_dict = calculate_question_vec(segment_results, word, weight)
         match_template, relation_type = calculate_sim(vec_dict, template_results)
         print(entity, relation_type)
-        query_cql = "match p=(e:forestry_subject)-[r:%s]->(obj) where e.name='%s' return obj" % (str(relation_type).upper(), entity)
+        query_cql = "match p=(e:forestry_subject)-[r:%s]->(obj) where e.name='%s' return obj" % (str(relation_type).upper(), linked_entity)
         query_res = graph.run(query_cql).data()
 
         relation_object_list = []
@@ -60,6 +62,7 @@ def question():
             data = {
                 'entity_type': entity_type,
                 'entity': entity,
+                'linked_entity': linked_entity,
                 'relation_type': relation_type,
                 'relation_object': relation_object_list,
                 'origin_info': origin_info
@@ -68,10 +71,16 @@ def question():
             return jsonify(result)
 
         else:
-            result = {'status': 0, 'message': '暂时无法回答该问题！'}
+            data = {
+                'entity_type': entity_type,
+                'entity': entity,
+                'linked_entity': linked_entity,
+                'relation_type': relation_type,
+            }
+            result = {'status': 101, 'data': data, 'message': '暂时无法回答该问题！无法匹配到相关实体或关系'}
             return jsonify(result)
     else:
-        result = {'status': 0, 'message': '提问中未包含实体！'}
+        result = {'status': 102, 'message': '无法匹配到相关实体！'}
         return jsonify(result)
 
 
