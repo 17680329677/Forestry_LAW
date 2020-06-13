@@ -162,14 +162,29 @@ def entity_link(vec_dict, entity_results):
     return linked_entity
 
 
+def relation_test():
+    file_path = r'G:\relation_test.txt'
+    with open(file_path, "r", encoding='gbk', errors='ignore') as f:
+        question = f.readline().replace('\n', '')
+        while question:
+            segment_results, template_results = get_template_and_segment(question)
+            word, weight = calculate_tf_idf(segment_results)
+            vec_dict = calculate_question_vec(segment_results, word, weight)
+            match_template, relation_type = calculate_sim(vec_dict, template_results)
+            print("%s \n 匹配的模板为：%s \n 识别的关系为：%s" % (question, match_template, relation_type))
+            print('\n===========================================================\n')
+            question = f.readline().replace('\n', '')
+
+
 if __name__ == '__main__':
     # segment_results, template_results = get_template_and_segment("$Forest 需要对什么负责？")
     # word, weight = calculate_tf_idf(segment_results)
     # vec_dict = calculate_question_vec(segment_results, word, weight)
     # calculate_sim(vec_dict, template_results)
-    segment_results, entity_results = get_entity_and_segment("生态公益林是什么？")
-    word, weight = calculate_tf_idf(segment_results)
-    vec_dict = calculate_question_vec(segment_results, word, weight)
-    entity_link(vec_dict, entity_results)
+    # segment_results, entity_results = get_entity_and_segment("生态公益林是什么？")
+    # word, weight = calculate_tf_idf(segment_results)
+    # vec_dict = calculate_question_vec(segment_results, word, weight)
+    # entity_link(vec_dict, entity_results)
+    relation_test()
 
 

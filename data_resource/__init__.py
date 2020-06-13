@@ -11,7 +11,8 @@ collection = db.law
 
 # Mysql连接资源
 conn = pymysql.connect(
-    host='127.0.0.1',
+    host='localhost',
+    port=3306,
     user='root',
     password='123456',
     database='forestry_law',

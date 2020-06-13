@@ -97,7 +97,7 @@ def dp_based_similarity_core():
     sentence1 = '各级林业主管部门负责木材经营加工的管理和监督。'
     sentence2 = '市园林主管部门应负责组织城市园林病虫害防治工作。'
     sentence2 = '市园林主管部门负责监督和技术指导。'
-    sentence2 = '没有违法所得或者违法所得不足三万元的，并处三千元以上三万元以下罚款。'
+    # sentence2 = '没有违法所得或者违法所得不足三万元的，并处三千元以上三万元以下罚款。'
     cursor.execute(select_sql, (sentence1,))
     res1 = cursor.fetchall()
     group1 = []
