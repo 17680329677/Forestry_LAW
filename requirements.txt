@@ -10,7 +10,7 @@ jieba==0.39
 kiwisolver==1.1.0
 matplotlib==3.1.2
 networkx==2.4
-numpy==1.17.4
+numpy==1.22.0
 pyltp==0.2.1
 pymongo==3.9.0
 PyMySQL==0.9.3
